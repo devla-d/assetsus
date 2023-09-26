@@ -1,0 +1,112 @@
+{% extends "layouts/home.html" %}
+<!--  -->
+
+<!--  -->
+{% block content %}
+
+<!-- section content begin -->
+<div class="uk-section uk-margin-small-top">
+  <div class="uk-container">
+    <div class="uk-grid uk-flex uk-flex-center in-blog-1 in-article">
+      <div class="uk-width-3-4@m">
+        <br /><br />
+        <article class="uk-card uk-card-default uk-border-rounded">
+          <div class="uk-card-body">
+            <div class="uk-flex">
+              <div class="uk-flex uk-flex-middle">
+                <p class="uk-text-small uk-text-muted uk-margin-remove">
+                  <span class="uk-margin-small-left uk-margin-small-right"
+                    >•</span
+                  >
+                  On weekends and on business days, investment is available for
+                  23 hours a day.
+                  <span class="uk-margin-small-left uk-margin-small-right"
+                    >•</span
+                  >
+                </p>
+              </div>
+            </div>
+            <h2 class="uk-margin-top uk-margin-medium-bottom">
+              Trade the FOREX Market with Assetsus LLC
+            </h2>
+            <p>
+              The FX market is one of the world’s biggest markets. You can trade
+              currency pairs from every corner of the world. However, there are
+              a handful of pairs that are worth mentioning: more traded than any
+              other currency pairs, the ‘majors’ dominate the FX market. The
+              four most traded currency pairs in the world have been coined the
+              ‘majors’. They involve the following currencies: euro, US dollar,
+              Japanese yen and pound sterling
+            </p>
+            <p></p>
+            <!-- TradingView Widget BEGIN -->
+            <div class="tradingview-widget-container">
+              <div class="tradingview-widget-container__widget"></div>
+
+              <script
+                type="text/javascript"
+                src="https://s3.tradingview.com/external-embedding/embed-widget-forex-cross-rates.js"
+                async
+              >
+                {
+                    "width": "100%",
+
+                            "currencies": [
+                                "EUR",
+                                "USD",
+                                "JPY",
+                                "GBP",
+                                "CHF",
+                                "AUD",
+                                "CAD",
+                                "NZD",
+                                "CNY"
+                            ],
+                                "isTransparent": false,
+                                    "colorTheme": "light",
+                                        "locale": "en"
+                }
+              </script>
+            </div>
+            <!-- TradingView Widget END -->
+            <p></p>
+            <p></p>
+
+            <h4>Why Assetsus LLC?</h4>
+            <p>
+              We trade profitably, the most popular pairs like the EUR/USD,
+              followed by the USD/JPY, GBP/USD and USD/CHF pairs respectively.
+              There are a few other currencies that deserve to be mentioned.
+              Informally known as the ‘commodity pairs’, the AUD/USD or
+              ‘Aussie’, USD/CAD and NZD/USD are all frequently traded currency
+              pairs. Unsurprisingly, this group of currencies derives its
+              nickname from the fact that they come from countries that possess
+              large quantities of natural resources.
+            </p>
+            <div class="uk-grid uk-child-width-1-1 uk-child-width-1-2@m">
+              <div>
+                <ul class="uk-list uk-list-bullet in-list-check">
+                  <li>Direct Market Access (DMA)</li>
+                  <li>Leverage up to 1:500</li>
+                  <li>T+0 settlement</li>
+                  <li>Dividends paid in cash</li>
+                </ul>
+              </div>
+              <div class="in-margin-top-10@s in-margin-bottom@s">
+                <ul class="uk-list uk-list-bullet in-list-check">
+                  <li>Free from UK Stamp Duty</li>
+                  <li>Short selling available</li>
+                  <li>Commissions from 0.08%</li>
+                  <li>Access to 1500 global shares</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- section content end -->
+
+{% endblock content %}

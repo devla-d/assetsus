@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>{% block title %} {% endblock title %}</title>
+    <meta name="title" content="Assets-Us Limited - Register" />
+
+    <meta
+      name="description"
+      content="Trade with Confidence on the Most Innovative Crypto Trading Platform - Unlock the Full Potential of the Crypto Market with Us"
+    />
+    <meta
+      name="keywords"
+      content="bitcoin,investment,Stocks,Crypto,Investment,Wealth,Financial goals,Investment options,Cryptocurrencies,Market trends,Financial analysts,Investment professionals,Diversification,Investment portfolio,Real-time trading,Educational resources,Market updates,Personalized investment coaching,Portfolio management,Seamless investment process,Secure financial future,financial market,stock market,cryptocurrency market,investment strategy,risk management,diversification strategy,financial advisor,investment company,online trading,financial planning,asset management,stock trading,crypto trading,investment opportunities,market analysis,professional guidance,personalized service,investment portfolio management,financial success,long-term investment,secure investments"
+    />
+    <link
+      rel="shortcut icon"
+      href="/assets/auth/images/logoIcon/favicon.png"
+      type="image/x-icon"
+    />
+
+    <link rel="apple-touch-icon" href="/assets/auth/images/logoIcon/logo.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta
+      name="apple-mobile-web-app-title"
+      content="Assets-Us Limited - Register"
+    />
+
+    <meta itemprop="name" content="Assets-Us Limited - Register" />
+    <meta
+      itemprop="description"
+      content="Trade with Confidence on the Most Innovative Crypto Trading Platform - Unlock the Full Potential of the Crypto Market with Us"
+    />
+    <meta
+      itemprop="image"
+      content="/assets/auth/images/seo/644246d9252c61682065113.png"
+    />
+
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="Assets-Us - Unlock the Full Potential of the Crypto Market with Us"
+    />
+    <meta
+      property="og:description"
+      content="Trade with Confidence on the Most Innovative Crypto Trading Platform - Unlock the Full Potential of the Crypto Market with Us"
+    />
+    <meta
+      property="og:image"
+      content="/assets/auth/images/seo/644246d9252c61682065113.png"
+    />
+    <meta property="og:image:type" content="png" />
+    <meta property="og:image:width" content="1180" />
+    <meta property="og:image:height" content="600" />
+    <meta property="og:url" content="{{domain}}/register" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <!-- Bootstrap CSS -->
+    <link href="/assets/auth/global/css/bootstrap.min.css" rel="stylesheet" />
+
+    <link href="/assets/auth/global/css/all.min.css" rel="stylesheet" />
+
+    <link
+      rel="stylesheet"
+      href="/assets/auth/global/css/line-awesome.min.css"
+    />
+
+    <link
+      rel="stylesheet"
+      href="/assets/auth/templates/bit_gold/css/vendor/animate.min.css"
+    />
+
+    <!-- slick slider css -->
+    <link
+      rel="stylesheet"
+      href="/assets/auth/templates/bit_gold/css/vendor/slick.css"
+    />
+    <link
+      rel="stylesheet"
+      href="/assets/auth/templates/bit_gold/css/vendor/dots.css"
+    />
+
+    <link
+      rel="stylesheet"
+      href="/assets/auth/templates/bit_gold/css/main.css"
+    />
+
+    <link
+      rel="stylesheet"
+      href="/assets/auth/templates/bit_gold/css/custom.css"
+    />
+
+    <link
+      rel="stylesheet"
+      href="/assets/auth/templates/bit_gold/css/colorb693.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Henny+Penny&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="/assets/auth/global/css/verification-code.css"
+    />
+    <link rel="stylesheet" href="/assets/css/toastr.min.css" />
+    <!-- <style>
+        h3{
+            color: #67E4AE;
+        }
+    </style> -->
+    {% block style %} {% endblock style %}
+  </head>
+
+  <body>
+    {% if messages %} {% for msg in messages %}
+    <div style="display: none" class="messages" data-msg="{{ msg }}"></div>
+    {% endfor %} {% endif %}
+    <div class="preloader">
+      <div class="preloader__imges">
+        <img
+          src="/assets/auth/images/frontend/preloader/632ebf9b581241664008091.png"
+          class="preloader__img one"
+          alt="No Image"
+        />
+        <img
+          src="/assets/auth/images/frontend/preloader/632ebf9b5e2681664008091.png"
+          class="preloader__img two"
+          alt="No Image"
+        />
+      </div>
+    </div>
+
+    <!-- scroll-to-top start -->
+    <div class="scroll-to-top">
+      <span class="scroll-icon">
+        <i class="fa fa-rocket" aria-hidden="true"></i>
+      </span>
+    </div>
+    <!-- scroll-to-top end -->
+
+    <div class="full-wh">
+      <!-- STAR ANIMATION -->
+      <div class="bg-animation">
+        <div id="stars"></div>
+        <div id="stars2"></div>
+        <div id="stars3"></div>
+        <div id="stars4"></div>
+      </div>
+      <!-- / STAR ANIMATION -->
+    </div>
+
+    <!-- Account Section -->
+    {% block content %} {% endblock content %}
+
+    <!-- Account Section -->
+
+    <script src="/assets/auth/global/js/jquery-3.6.0.min.js"></script>
+    <script src="/assets/auth/global/js/bootstrap.bundle.min.js"></script>
+
+    <!-- slick slider js -->
+    <script src="/assets/auth/templates/bit_gold/js/vendor/slick.min.js"></script>
+    <script src="/assets/auth/templates/bit_gold/js/vendor/wow.min.js"></script>
+    <!-- dashboard custom js -->
+    <script src="/assets/auth/templates/bit_gold/js/app.js"></script>
+
+    <link rel="stylesheet" href="/assets/auth/global/css/iziToast.min.css" />
+    <script src="/assets/auth/global/js/iziToast.min.js"></script>
+    <script src="/assets/js/toastr.min.js"></script>
+    {% if messages %}
+    <script src="/assets/js/toastr-init.js"></script>
+    {% endif %}
+    <script src="/assets/js/circle-progress.min.js"></script>
+    <script src="/assets/js/circle-progress-init.js"></script>
+
+    {% block script %} {% endblock script %}
+  </body>
+</html>

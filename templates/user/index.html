@@ -1,0 +1,256 @@
+{% extends "layouts/auth.html" %} {% load crispy_forms_tags %}
+<!--  -->
+{% block title %} Dashboard {%endblock title %}
+<!--  -->
+{% block content %}
+<div class="page-wrapper">
+  <!-- header-section start  -->
+  {% include "components/user_header.html" %}
+  <!-- header-section end  -->
+  <!-- breadcrum -->
+  {% include "components/user_breadcrum.html" with name="Dashbaord"%}
+  <!-- breadcrum -->
+
+  <div class="section-wrapper">
+    <div class="pb-60 pt-60">
+      <div class="container">
+        <div class="row notice"></div>
+
+        <div class="row justify-content-center">
+          <div class="col-md-12">
+            <div class="alert border border--warning" role="alert">
+              <div class="alert__icon d-flex align-items-center text--warning">
+                <i class="fas fa-user-lock"></i>
+              </div>
+              <p class="alert__message">
+                <span class="fw-bold">2FA Authentication</span><br />
+                <small
+                  ><i
+                    >To keep safe your account, Please enable
+                    <a
+                      href="https://app.assetsus.com/user/twofactor"
+                      class="link-color"
+                      >2FA</a
+                    >
+                    security.</i
+                  >
+                  It will make secure your account and balance.</small
+                >
+              </p>
+            </div>
+
+            <div class="alert border border--info" role="alert">
+              <div class="alert__icon d-flex align-items-center text--info">
+                <i class="fas fa-file-signature"></i>
+              </div>
+              <p class="alert__message">
+                <span class="fw-bold">KYC Verification Required</span><br />
+                <small
+                  ><i
+                    >Please submit the required KYC information to verify
+                    yourself. Otherwise, you couldn't make any withdrawal
+                    requests to the system.
+                    <a
+                      href="https://app.assetsus.com/user/kyc-form"
+                      class="link-color"
+                      >Click here</a
+                    >
+                    to submit KYC information.</i
+                  ></small
+                >
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-lg-12 mt-lg-0 mt-5">
+            <div class="row mb-none-30">
+              <div class="col-xl-4 col-sm-6 mb-30">
+                <div class="d-widget d-flex justify-content-between gap-5">
+                  <div class="left-content">
+                    <span class="caption">Deposit Wallet Balance</span>
+                    <h4 class="currency-amount">$50</h4>
+                  </div>
+                  <div class="icon ms-auto">
+                    <i class="las la-dollar-sign"></i>
+                  </div>
+                </div>
+                <!-- d-widget-two end -->
+              </div>
+              <div class="col-xl-4 col-sm-6 mb-30">
+                <div class="d-widget d-flex justify-content-between gap-5">
+                  <div class="left-content">
+                    <span class="caption">Interest Wallet Balance</span>
+                    <h4 class="currency-amount">$0</h4>
+                  </div>
+                  <div class="icon ms-auto">
+                    <i class="las la-wallet"></i>
+                  </div>
+                </div>
+                <!-- d-widget-two end -->
+              </div>
+              <div class="col-xl-4 col-sm-6 mb-30">
+                <div class="d-widget d-flex justify-content-between gap-5">
+                  <div class="left-content">
+                    <span class="caption">Total Invest</span>
+                    <h4 class="currency-amount">$0</h4>
+                  </div>
+                  <div class="icon ms-auto">
+                    <i class="las la-cubes"></i>
+                  </div>
+                </div>
+                <!-- d-widget-two end -->
+              </div>
+              <div class="col-xl-4 col-sm-6 mb-30">
+                <div class="d-widget d-flex justify-content-between gap-5">
+                  <div class="left-content">
+                    <span class="caption">Total Deposit</span>
+                    <h4 class="currency-amount">$0</h4>
+                  </div>
+                  <div class="icon ms-auto">
+                    <i class="las la-credit-card"></i>
+                  </div>
+                </div>
+                <!-- d-widget-two end -->
+              </div>
+              <div class="col-xl-4 col-sm-6 mb-30">
+                <div class="d-widget d-flex justify-content-between gap-5">
+                  <div class="left-content">
+                    <span class="caption">Total Withdraw</span>
+                    <h4 class="currency-amount">$0</h4>
+                  </div>
+                  <div class="icon ms-auto">
+                    <i class="las la-cloud-download-alt"></i>
+                  </div>
+                </div>
+                <!-- d-widget-two end -->
+              </div>
+              <div class="col-xl-4 col-sm-6 mb-30">
+                <div class="d-widget d-flex justify-content-between gap-5">
+                  <div class="left-content">
+                    <span class="caption">Referral Earnings</span>
+                    <h4 class="currency-amount">$0.00</h4>
+                  </div>
+                  <div class="icon ms-auto">
+                    <i class="las la-user-friends"></i>
+                  </div>
+                </div>
+                <!-- d-widget-two end -->
+              </div>
+            </div>
+            <!-- row end -->
+            <div class="row mt-50">
+              <div class="col-lg-12">
+                <div class="table-responsive--md">
+                  <table class="table style--two">
+                    <thead>
+                      <tr>
+                        <th>Date</th>
+                        <th>Transaction ID</th>
+                        <th>Amount</th>
+                        <th>Wallet</th>
+                        <th>Details</th>
+                        <th>Post Balance</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>19/09/2023</td>
+                        <td><span class="text-primary">HU3CTS4SK6CV</span></td>
+
+                        <td>
+                          <span class="text-success">+ $50</span>
+                        </td>
+                        <td>
+                          <span class="badge bg-info">Deposit Wallet</span>
+                        </td>
+                        <td>You have got registration bonus</td>
+                        <td><span> $50</span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="tradingview-widget-copyright" style="width: 100%">
+                  <a href="#" rel="noopener" target="_blank"
+                    ><span class="blue-text"></span>
+                    <span class="blue-text">Personal trading chart</span></a
+                  >
+                </div>
+                <script
+                  type="text/javascript"
+                  src="https://s3.tradingview.com/tv.js"
+                ></script>
+                <script type="text/javascript">
+                  new TradingView.widget({
+                    width: "100%",
+                    height: "550",
+                    symbol: "COINBASE:BTCUSD",
+                    interval: "1",
+                    timezone: "Etc/UTC",
+                    theme: "light",
+                    style: "9",
+                    locale: "en",
+                    toolbar_bg: "#f1f3f6",
+                    enable_publishing: false,
+                    hide_side_toolbar: false,
+                    allow_symbol_change: true,
+                    calendar: false,
+                    studies: ["BB@tv-basicstudies"],
+                    container_id: "tradingview_f933e",
+                  });
+                </script>
+              </div>
+              <div class="white-box" style="height: 450px; width: 100%">
+                <h4 style="margin-bottom: 5px">
+                  Forex Market Fundamental Data
+                </h4>
+                <!-- TradingView Widget BEGIN -->
+
+                <span id="tradingview-copyright"
+                  ><a
+                    ref="nofollow noopener"
+                    target="_blank"
+                    href="http://www.tradingview.com"
+                    style="
+                      color: rgb(173, 174, 176);
+                      font-family: 'Trebuchet MS', Tahoma, Arial, sans-serif;
+                      font-size: 13px;
+                    "
+                  ></a
+                ></span>
+                <script
+                  src="https://s3.tradingview.com/external-embedding/embed-widget-forex-cross-rates.js"
+                >
+                  {
+                    "currencies": [
+                      "EUR",
+                      "USD",
+                      "JPY",
+                      "BTC",
+                      "ETH",
+                      "LTC",
+                      "GBP",
+                      "CHF",
+                      "AUD",
+                      "CAD",
+                      "NZD",
+                      "CNY"
+                    ],
+                    "isTransparent": false,
+                    "colorTheme": "light",
+                    "width": "100%",
+                    "height": "100%",
+                    "locale": "en"
+                  }
+                </script>
+              </div>
+            </div>
+          </div>
+          <!-- row end -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %} {% block script %} {% endblock script %}

@@ -1,0 +1,186 @@
+{% extends "layouts/home.html" %}
+<!--  -->
+
+<!--  -->
+{% block content %}
+
+<!-- breadcrumb content begin -->
+<div class="uk-section uk-padding-remove-vertical in-equity-breadcrumb">
+  <div class="uk-container">
+    <div class="uk-grid">
+      <div class="uk-width-1-1">
+        <ul class="uk-breadcrumb"></ul>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- breadcrumb content end -->
+<!-- TradingView Widget BEGIN -->
+<!-- TradingView Widget BEGIN -->
+<div class="tradingview-widget-container">
+  <div class="tradingview-widget-container__widget"></div>
+
+  <script
+    type="text/javascript"
+    src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js"
+    async
+  >
+      {
+      "symbols": [
+        {
+          "proName": "BITSTAMP:BTCUSD",
+          "title": "Bitcoin"
+        },
+        {
+          "proName": "BITSTAMP:ETHUSD",
+          "title": "Ethereum"
+        },
+        {
+          "description": "Solana",
+          "proName": "BINANCE:SOLUSDT"
+        },
+        {
+          "description": "Eth",
+          "proName": "BINANCE:ETHUSDT"
+        },
+        {
+          "description": "Polk",
+          "proName": "KUCOIN:POLKBTC"
+        },
+        {
+          "description": "EOS",
+          "proName": "BINANCE:EOSUSDT"
+        },
+        {
+          "description": "XRP",
+          "proName": "BINANCE:XRPUSDT"
+        },
+        {
+          "description": "LITE",
+          "proName": "BINANCE:LTCUSDT"
+        },
+        {
+          "description": "DOGE",
+          "proName": "KUCOIN:DOGEUSDT"
+        },
+        {
+          "description": "CARDANO",
+          "proName": "BINANCE:ADAUSDT"
+        },
+        {
+          "description": "SHIBA",
+          "proName": "BINANCE:SHIBUSDT"
+        },
+        {
+          "description": "CHILIZ",
+          "proName": "BINANCE:CHZUSDT"
+        },
+        {
+          "description": "MATIC",
+          "proName": "BINANCE:MATICUSDT"
+        },
+        {
+          "description": "DOT",
+          "proName": "BINANCE:DOTUSDT"
+        },
+        {
+          "description": "COSMOS",
+          "proName": "BINANCE:ATOMUSDT"
+        }
+      ],
+      "showSymbolLogo": true,
+      "colorTheme": "light",
+      "isTransparent": false,
+      "displayMode": "adaptive",
+      "locale": "en"
+    }
+  </script>
+</div>
+<!-- TradingView Widget END -->
+<!-- TradingView Widget END -->
+<!-- breadcrumb content end -->
+<!-- section content begin -->
+<div class="uk-section">
+  <div class="uk-container">
+    <div class="uk-grid">
+      <div class="uk-width-1-2"></div>
+      <div class="uk-width-1-1 uk-text-center uk-margin-medium-bottom">
+        <h1>Assetsus LLC <span class="in-highlight">legal documents</span></h1>
+      </div>
+      <div
+        class="uk-grid-divider uk-child-width-1-3@m uk-child-width-1-2@s"
+        data-uk-grid
+      >
+        <div>
+          <i class="fas fa-file fa-lg in-icon-wrap primary-color"></i>
+          <h3 class="uk-margin-top">Terms of Service</h3>
+          <p>A capable person who has reached the age of 18 ...</p>
+          <ul class="uk-list uk-margin-top">
+            <li>
+              <a class="uk-button uk-button-text" href="/terms"
+                ><i class="fas fa-file-pdf fa-sm uk-margin-small-right"></i
+                >Terms and Condition</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div>
+          <i class="fas fa-globe fa-lg in-icon-wrap primary-color"></i>
+          <h3 class="uk-margin-top">Policies</h3>
+          <p>
+            This section explains how secure it is to submitted personal
+            information on the official Assetsus LLC website..
+          </p>
+          <ul class="uk-list uk-margin-top">
+            <li>
+              <a class="uk-button uk-button-text" href="/policies"
+                ><i class="fas fa-file-pdf fa-sm uk-margin-small-right"></i
+                >Privacy Policy
+              </a>
+            </li>
+            <li>
+              <a class="uk-button uk-button-text" href="/insurance"
+                ><i class="fas fa-file-pdf fa-sm uk-margin-small-right"></i
+                >Insurance Policy
+              </a>
+            </li>
+
+            <li>
+              <a class="uk-button uk-button-text" href="/criminal-activity/"
+                ><i class="fas fa-file-pdf fa-sm uk-margin-small-right"></i
+                >Criminal Activity Policy
+              </a>
+            </li>
+            <li>
+              <a class="uk-button uk-button-text" href="/cashback"
+                ><i class="fas fa-file-pdf fa-sm uk-margin-small-right"></i
+                >Cashback Policy
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <i class="fas fa-shield-alt fa-lg in-icon-wrap primary-color"></i>
+          <h3 class="uk-margin-top">Disclamer</h3>
+          <p>
+            Learn more about how we keep your work and personal data safe when
+            you’re using our services.
+          </p>
+          <ul class="uk-list uk-margin-top">
+            <li>
+              <a class="uk-button uk-button-text" href="/disclamer"
+                ><i class="fas fa-file-pdf fa-sm uk-margin-small-right"></i
+                >Disclamer
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- section content end -->
+<!-- section content begin -->
+
+<!-- section content end -->
+{% endblock content %}

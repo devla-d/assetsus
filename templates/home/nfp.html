@@ -1,0 +1,114 @@
+{% extends "layouts/home.html" %}
+<!--  -->
+
+<!--  -->
+{% block content %}
+
+<!-- section content begin -->
+<div class="uk-section uk-margin-small-top">
+  <div class="uk-container">
+    <div class="uk-grid uk-flex uk-flex-center in-blog-1 in-article">
+      <div class="uk-width-3-4@m">
+        <br /><br />
+        <article class="uk-card uk-card-default uk-border-rounded">
+          <div class="uk-card-body">
+            <div class="uk-flex">
+              <div class="uk-flex uk-flex-middle">
+                <p class="uk-text-small uk-text-muted uk-margin-remove">
+                  <span class="uk-margin-small-left uk-margin-small-right"
+                    >•</span
+                  >
+                  On weekends and on business days, investment is available for
+                  23 hours a day.
+                  <span class="uk-margin-small-left uk-margin-small-right"
+                    >•</span
+                  >
+                </p>
+              </div>
+            </div>
+            <h2 class="uk-margin-top uk-margin-medium-bottom">
+              Trade the Non-Farm Payroll Market with Assetsus LLC
+            </h2>
+            <p>
+              Nonfarm payroll refers to the number of paid U.S. employees,
+              excluding farm employees, government employees, private household
+              employees, and employees of nonprofit organizations. The nonfarm
+              payroll number is released on the first Friday of every month by
+              the Bureau of Labor Statistics (BLS) as part of the Employment
+              Situation Report. The report also includes the unemployment rate,
+              average hourly earnings, and the number of people participating in
+              the labor force.
+            </p>
+            <p></p>
+            <!-- TradingView Widget BEGIN -->
+            <div class="tradingview-widget-container">
+              <div class="tradingview-widget-container__widget"></div>
+
+              <script
+                type="text/javascript"
+                src="https://s3.tradingview.com/external-embedding/embed-widget-forex-cross-rates.js"
+                async
+              >
+                {
+                    "width": "100%",
+
+                            "currencies": [
+                                "EUR",
+                                "USD",
+                                "JPY",
+                                "GBP",
+                                "CHF",
+                                "AUD",
+                                "CAD",
+                                "NZD",
+                                "CNY"
+                            ],
+                                "isTransparent": false,
+                                    "colorTheme": "light",
+                                        "locale": "en"
+                }
+              </script>
+            </div>
+            <!-- TradingView Widget END -->
+            <p></p>
+            <p></p>
+
+            <h4>Why Assetsus LLC?</h4>
+            <p>
+              For Assetsus LLC Company, the nonfarm payroll number can provide
+              valuable insights into the overall health of the U.S. economy. A
+              consistent increase in the nonfarm payroll number can indicate a
+              strong economy and potentially lead to increased consumer spending
+              and business investment. Conversely, a decrease in the nonfarm
+              payroll number can indicate a weaker economy and potentially lead
+              to decreased consumer spending and business investment. As an
+              investment company, Assetsus LLC would take these factors into
+              account when making investment decisions
+            </p>
+            <div class="uk-grid uk-child-width-1-1 uk-child-width-1-2@m">
+              <div>
+                <ul class="uk-list uk-list-bullet in-list-check">
+                  <li>Direct Market Access (DMA)</li>
+                  <li>Leverage up to 1:500</li>
+                  <li>T+0 settlement</li>
+                  <li>Dividends paid in cash</li>
+                </ul>
+              </div>
+              <div class="in-margin-top-10@s in-margin-bottom@s">
+                <ul class="uk-list uk-list-bullet in-list-check">
+                  <li>Free from UK Stamp Duty</li>
+                  <li>Short selling available</li>
+                  <li>Commissions from 0.08%</li>
+                  <li>Access to 1500 global shares</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- section content end -->
+
+{% endblock content %}

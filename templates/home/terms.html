@@ -1,0 +1,233 @@
+{% extends "layouts/home.html" %}
+<!--  -->
+
+<!--  -->
+{% block content %}
+<!-- TradingView Widget BEGIN -->
+<div class="tradingview-widget-container">
+  <div class="tradingview-widget-container__widget"></div>
+
+  <script
+    type="text/javascript"
+    src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js"
+    async
+  >
+      {
+      "symbols": [
+        {
+          "proName": "BITSTAMP:BTCUSD",
+          "title": "Bitcoin"
+        },
+        {
+          "proName": "BITSTAMP:ETHUSD",
+          "title": "Ethereum"
+        },
+        {
+          "description": "Solana",
+          "proName": "BINANCE:SOLUSDT"
+        },
+        {
+          "description": "Eth",
+          "proName": "BINANCE:ETHUSDT"
+        },
+        {
+          "description": "Polk",
+          "proName": "KUCOIN:POLKBTC"
+        },
+        {
+          "description": "EOS",
+          "proName": "BINANCE:EOSUSDT"
+        },
+        {
+          "description": "XRP",
+          "proName": "BINANCE:XRPUSDT"
+        },
+        {
+          "description": "LITE",
+          "proName": "BINANCE:LTCUSDT"
+        },
+        {
+          "description": "DOGE",
+          "proName": "KUCOIN:DOGEUSDT"
+        },
+        {
+          "description": "CARDANO",
+          "proName": "BINANCE:ADAUSDT"
+        },
+        {
+          "description": "SHIBA",
+          "proName": "BINANCE:SHIBUSDT"
+        },
+        {
+          "description": "CHILIZ",
+          "proName": "BINANCE:CHZUSDT"
+        },
+        {
+          "description": "MATIC",
+          "proName": "BINANCE:MATICUSDT"
+        },
+        {
+          "description": "DOT",
+          "proName": "BINANCE:DOTUSDT"
+        },
+        {
+          "description": "COSMOS",
+          "proName": "BINANCE:ATOMUSDT"
+        }
+      ],
+      "showSymbolLogo": true,
+      "colorTheme": "light",
+      "isTransparent": false,
+      "displayMode": "adaptive",
+      "locale": "en"
+    }
+  </script>
+</div>
+<!-- TradingView Widget END -->
+<!-- breadcrumb content end -->
+
+<!-- section content begin -->
+<div class="uk-section uk-margin-small-top">
+  <div class="uk-container">
+    <div class="uk-grid uk-flex uk-flex-center in-blog-1 in-article">
+      <div class="uk-width-3-4@m">
+        <br />
+        <select onchange="doGTranslate(this);">
+          <option value="">Select Language</option>
+          <option value="en|af">Afrikaans</option>
+          <option value="en|sq">Albanian</option>
+          <option value="en|ar">Arabic</option>
+          <option value="en|hy">Armenian</option>
+          <option value="en|az">Azerbaijani</option>
+          <option value="en|eu">Basque</option>
+          <option value="en|be">Belarusian</option>
+          <option value="en|bg">Bulgarian</option>
+          <option value="en|ca">Catalan</option>
+          <option value="en|zh-CN">Chinese (Simplified)</option>
+          <option value="en|zh-TW">Chinese (Traditional)</option>
+          <option value="en|hr">Croatian</option>
+          <option value="en|cs">Czech</option>
+          <option value="en|da">Danish</option>
+          <option value="en|nl">Dutch</option>
+          <option value="en|en">English</option>
+          <option value="en|et">Estonian</option>
+          <option value="en|tl">Filipino</option>
+          <option value="en|fi">Finnish</option>
+          <option value="en|fr">French</option>
+          <option value="en|gl">Galician</option>
+          <option value="en|ka">Georgian</option>
+          <option value="en|de">German</option>
+          <option value="en|el">Greek</option>
+          <option value="en|ht">Haitian Creole</option>
+          <option value="en|iw">Hebrew</option>
+          <option value="en|hi">Hindi</option>
+          <option value="en|hu">Hungarian</option>
+          <option value="en|is">Icelandic</option>
+          <option value="en|id">Indonesian</option>
+          <option value="en|ga">Irish</option>
+          <option value="en|it">Italian</option>
+          <option value="en|ja">Japanese</option>
+          <option value="en|ko">Korean</option>
+          <option value="en|lv">Latvian</option>
+          <option value="en|lt">Lithuanian</option>
+          <option value="en|mk">Macedonian</option>
+          <option value="en|ms">Malay</option>
+          <option value="en|mt">Maltese</option>
+          <option value="en|no">Norwegian</option>
+          <option value="en|fa">Persian</option>
+          <option value="en|pl">Polish</option>
+          <option value="en|pt">Portuguese</option>
+          <option value="en|ro">Romanian</option>
+          <option value="en|ru">Russian</option>
+          <option value="en|sr">Serbian</option>
+          <option value="en|sk">Slovak</option>
+          <option value="en|sl">Slovenian</option>
+          <option value="en|es">Spanish</option>
+          <option value="en|sw">Swahili</option>
+          <option value="en|sv">Swedish</option>
+          <option value="en|th">Thai</option>
+          <option value="en|tr">Turkish</option>
+          <option value="en|uk">Ukrainian</option>
+          <option value="en|ur">Urdu</option>
+          <option value="en|vi">Vietnamese</option>
+          <option value="en|cy">Welsh</option>
+          <option value="en|yi">Yiddish</option>
+        </select>
+        <div id="google_translate_element2"></div>
+
+        <br /><br />
+        <article class="uk-card uk-card-default uk-border-rounded">
+          <div class="uk-card-body">
+            <div class="uk-flex">
+              <!-- <div class="uk-flex uk-flex-middle">
+                                        <p class="uk-text-small uk-text-muted uk-margin-remove">
+                                            <span class="uk-margin-small-left uk-margin-small-right">•</span>
+                                            <span class="uk-margin-small-left uk-margin-small-right">•</span>
+                                        </p>
+                                    </div> -->
+            </div>
+            <h6 class="uk-margin-remove">
+              <span class="in-highlight">Terms</span> and Conditions
+            </h6>
+            <p class="uk-text-muted uk-margin-small-top">
+              A capable person who has reached the age of 18 (hereinafter
+              referred to as the Client) and Kryptbase Asset, a company located
+              in 400 South River Road, Suite 300, New Hope, Pennsylvania 18938.
+              enter into these Terms of Service (hereinafter referred to as the
+              Rules) in the form of a public offer, and they fully exclude any
+              other interpretation. The Rules' interpretation will govern all
+              interactions between the Company and the Client (hereinafter
+              referred to as the Parties) that occur or may occur as a result of
+              (hereinafter the Site).
+            </p>
+
+            <h6 class="uk-margin-remove">
+              <span class="in-highlight">Personal</span> Accounts
+            </h6>
+            <p class="uk-text-muted uk-margin-small-top">
+              The area of ​​the Site formed using the software, access to which
+              is possible only after the Customer has completed the registration
+              procedure on the Site. To use a Personal Account, authorization
+              data is required.
+            </p>
+            <p class="uk-text-muted uk-margin-small-top">
+              Username and Password that the client independently creates serves
+              as authorization data
+            </p>
+            <p class="uk-text-muted uk-margin-small-top">
+              The difficulty of the generated password, which should consist of
+              a string of randomly chosen letters from both keyboard registers,
+              numbers, and symbols The Client attests that it is exclusively his
+              duty to ensure that the Authorization Data is secure and out of
+              the reach of third parties. The Client attests that it was made
+              clear to him that he would need to restore the Authorization Data
+              on his own in the case of loss of the Authorization Data. Only one
+              Personal account may be opened by the customer for active
+              investing. The Company has the right to block all of the Client's
+              Personal Accounts in the event of multiple registrations. As well
+              as reducing affiliate bonuses for the Client's private deposits.
+            </p>
+            <p class="uk-text-muted uk-margin-small-top">
+              This rule does not apply to partner fee received by such a Client
+              for deposits of referrals personally invited by him Investing is
+              carried out exclusively with the help of electronic payment
+              systems available for this process. At the moment, the Client can
+              use one or all of the following electronic payment systems:
+              Payeer, Perfect Money, Bitcoin, Litecoin, Ethereum. The Client
+              confirms that he invests voluntarily and doesn't rely on the
+              information and / or opinions posted on the Site. The Company
+              confirms its full readiness to fulfill all the declared
+              obligations in terms of the promised profitability for its
+              investment offers posted on the Investors website section.
+            </p>
+            <!-- TradingView Widget BEGIN -->
+
+            <!-- TradingView Widget END -->
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- section content end -->
+{% endblock content %}

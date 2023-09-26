@@ -1,0 +1,129 @@
+{% extends "layouts/home.html" %}
+<!--  -->
+
+<!--  -->
+{% block content %}
+
+<!-- section content begin -->
+<div class="uk-section uk-margin-small-top">
+  <div class="uk-container">
+    <div class="uk-grid uk-flex uk-flex-center in-blog-1 in-article">
+      <div class="uk-width-2-1@m">
+        <br /><br />
+        <article class="uk-card uk-card-default uk-border-rounded">
+          <div class="uk-card-body">
+            <div class="uk-flex">
+              <div class="uk-flex uk-flex-middle">
+                <p class="uk-text-small uk-text-muted uk-margin-remove">
+                  <span class="uk-margin-small-left uk-margin-small-right"
+                    >•</span
+                  >
+                  OWN A PIECE OF A COMPANY'S FUTURE.
+                  <span class="uk-margin-small-left uk-margin-small-right"
+                    >•</span
+                  >
+                </p>
+              </div>
+            </div>
+            <h2 class="uk-margin-top uk-margin-medium-bottom">
+              Invest In Stocks.
+            </h2>
+            <p>
+              While stocks fluctuate, growth may help you keep ahead of
+              inflation. Potentially generate income with dividends. Flexibility
+              for long- and short-term investing strategies. Placing a stock
+              trade is about a lot more than pushing a button and entering your
+              order. This brief video can help you prepare before you open a
+              position and develop a plan for managing it.
+            </p>
+            <p></p>
+            <!-- TradingView Widget BEGIN -->
+            <div class="tradingview-widget-container">
+              <div class="tradingview-widget-container__widget"></div>
+
+              <script
+                type="text/javascript"
+                src="https://s3.tradingview.com/external-embedding/embed-widget-hotlists.js"
+                async
+              >
+                {
+                    "colorTheme": "light",
+                    "dateRange": "12M",
+                    "exchange": "US",
+                    "showChart": false,
+                    "locale": "en",
+                    "width": "100%",
+
+                    "largeChartUrl": "",
+                    "isTransparent": false,
+                    "showSymbolLogo": true,
+                    "showFloatingTooltip": false
+                }
+              </script>
+            </div>
+            <!-- TradingView Widget END -->
+            <p></p>
+            <p></p>
+            <h4>Why Invest in Stocks</h4>
+
+            <div class="uk-grid uk-child-width-1-1 uk-child-width-1-2@m">
+              <div>
+                <ul class="uk-list uk-list-bullet in-list-check">
+                  <li>
+                    Growth potential While stock performance changes over time,
+                    successful stocks can help your money grow—at times, they
+                    can even outrun inflation
+                  </li>
+                  <li>
+                    Income Some stocks pay regular dividends—that’s income you
+                    can keep or reinvest
+                  </li>
+                  <li>
+                    Flexibility Since stocks trade by the millions every day,
+                    you can move quickly when you’re buying or selling
+                  </li>
+                  <li>
+                    Control You decide which company to invest in, when it’s
+                    time to buy, and when it’s time to sell
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <h4>Details on Stocks</h4>
+
+            <div class="uk-grid uk-child-width-1-1 uk-child-width-1-2@m">
+              <div>
+                <ul class="uk-list uk-list-bullet in-list-check">
+                  <li>
+                    <h6>WHAT IS A DIVIDEND?</h6>
+                    A dividend is a payment made by a corporation to its
+                    stockholders, usually out of its profits. Dividends are
+                    typically paid regularly (e.g. quarterly) and made as a
+                    fixed amount per share of stock.
+                  </li>
+                  <li>
+                    <h6>THE BASICS OF STOCK SELECTION</h6>
+                    Selecting stocks for investing and trading should not be a
+                    guessing game in today's market. Join us as we review the
+                    basics of technical analysis and other stock selection
+                    techniques you should know before buying a stock.
+                  </li>
+                  <li>
+                    <h6>WHAT TO KNOW BEFORE YOU BUY STOCKS</h6>
+                    Placing a stock trade is about a lot more than pushing a
+                    button and entering your order. This brief video can help
+                    you prepare before you open a position and develop a plan
+                    for managing it.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- section content end -->
+{% endblock content %}

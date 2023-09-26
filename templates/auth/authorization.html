@@ -1,0 +1,93 @@
+{% extends "layouts/auth.html" %}
+<!--  -->
+{% block title %} Authorization {% endblock title %}
+<!--  -->
+{% block content %}
+
+<div class="page-wrapper">
+  <!-- header-section start  -->
+  {% include "components/auth_header.html" %}
+  <!-- header-section end  -->
+  <section
+    class="inner-hero bg_img"
+    data-background="/assets/auth/images/frontend/breadcrumb/631d82f525a611662878453.jpg"
+  >
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6">
+          <h2 class="page-title">2FA Verification</h2>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="section-wrapper">
+    <div class="cmn-section">
+      <div class="container">
+        <div class="d-flex justify-content-center">
+          <div class="verification-code-wrapper">
+            <div class="verification-area">
+              <form action="" method="POST" class="submit-form">
+                <input type="hidden" name="_token" />
+                <div class="mb-3">
+                  <label>Verification Code</label>
+                  <div class="verification-code">
+                    <input
+                      type="text"
+                      name="code"
+                      id="verification-code"
+                      class="form-control overflow-hidden"
+                      required
+                      autocomplete="off"
+                    />
+                    <div class="boxes">
+                      <span>-</span>
+                      <span>-</span>
+                      <span>-</span>
+                      <span>-</span>
+                      <span>-</span>
+                      <span>-</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form--group">
+                  <button type="submit" class="btn btn--base w-100">
+                    Submit
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- footer-section start  -->
+  {% include "components/auth_footer.html" %}
+  <!-- footer-section end  -->
+</div>
+
+{% endblock content %} {% block script %}
+
+<script>
+  $("#verification-code").on("input", function () {
+    $(this).val(function (i, val) {
+      if (val.length >= 6) {
+        $(".submit-form")
+          .find("button[type=submit]")
+          .html('<i class="las la-spinner fa-spin"></i>');
+        $(".submit-form").submit();
+      }
+      if (val.length > 6) {
+        return val.substring(0, val.length - 1);
+      }
+      return val;
+    });
+    for (let index = $(this).val().length; index >= 0; index--) {
+      $($(".boxes span")[index]).html("");
+    }
+  });
+</script>
+
+{% endblock script %}

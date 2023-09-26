@@ -1,0 +1,309 @@
+{% extends "layouts/home.html" %}
+<!--  -->
+
+<!--  -->
+{% block content %}
+
+<!-- section content begin -->
+<div
+  class="uk-section uk-padding-remove-vertical uk-margin-bottom"
+  data-uk-scrollspy="cls:uk-animation-fade; delay:200"
+>
+  <!-- TradingView Widget BEGIN -->
+  <div class="tradingview-widget-container">
+    <script
+      type="text/javascript"
+      src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js"
+      async
+    >
+      {
+          "symbols": [
+              {
+                  "proName": "FOREXCOM:SPXUSD",
+                  "title": "S&P 500"
+              },
+              {
+                  "proName": "FOREXCOM:NSXUSD",
+                  "title": "US 100"
+              },
+              {
+                  "proName": "FX_IDC:EURUSD",
+                  "title": "EUR/USD"
+              },
+              {
+                  "proName": "BITSTAMP:BTCUSD",
+                  "title": "Bitcoin"
+              },
+              {
+                  "proName": "BITSTAMP:ETHUSD",
+                  "title": "Ethereum"
+              },
+              {
+                  "description": "Gold",
+                  "proName": "COMEX:GC1!"
+              },
+              {
+                  "description": "BNB",
+                  "proName": "CRYPTOCAP:BNB"
+              }
+          ],
+              "showSymbolLogo": true,
+                  "colorTheme": "light",
+                      "isTransparent": false,
+                          "displayMode": "adaptive",
+                              "locale": "en"
+      }
+    </script>
+  </div>
+  <div class="uk-section">
+    <div class="uk-container">
+      <div class="uk-grid">
+        <div class="uk-width-1-1 uk-flex uk-flex-center"></div>
+        <div
+          class="uk-grid uk-grid-large uk-child-width-1-1@m uk-margin-medium-top uk-grid-stack"
+          data-uk-grid
+        >
+          <div class="uk-flex uk-flex-left">
+            <div class="uk-margin-right">
+              <i class="fas fa-leaf fa-lg in-icon-wrap primary-color"></i>
+            </div>
+            <div>
+              <h2>About Assetsus LLC</h2>
+              <h6>
+                Assetsus LLC advises corporate, financial sponsor and venture
+                capital clients as they prepare to raise capital in the equity
+                markets and as owners consider efficient and value-maximizing
+                monetization strategies.
+              </h6>
+              <p>
+                Experience matters. Creating long-term equity value requires the
+                knowledge that can only be gained from our volume of capital
+                markets transactions and breadth of senior, sector-specific
+                expertise.
+              </p>
+              <p>
+                Our Assetsus LLC senior team members are exclusively equity
+                specialists with collectively over 330 years of capital markets
+                transaction experience and relationships forged at the leading
+                investment banking houses around the world. This unmatched
+                expertise has been leveraged at Assetsus LLC in over 860
+                engagements and nearly $400bn in capital raised since our
+                founding in 2005 (including dual-track IPO/Private Sale
+                processes).
+              </p>
+              <p>
+                Further expertise is accessible through our partner firm,
+                Assetsus LLC Strategic Communications, a premier Investor
+                Relations and Corporate Communications firm with over 20 years
+                of experience partnering with private and public companies
+                across all industry sectors. Offerings include fully outsourced
+                investor relations, environmental, social and governance (ESG)
+                evaluations, perception surveys, C-suite visibility programs,
+                content development, media relations, crisis preparation,
+                digital and social media communications and media and
+                presentation training.
+              </p>
+            </div>
+          </div>
+          <div class="uk-width-1-1@m">
+            <div
+              class="uk-grid uk-child-width-1-1@m uk-margin-medium-top"
+              data-uk-grid
+            >
+              <div>
+                <ul class="in-faq-2" data-uk-accordion>
+                  <li>
+                    <a
+                      class="uk-accordion-title"
+                      style="text-decoration: none"
+                      href="#"
+                    >
+                      <div
+                        class="uk-card uk-card-default uk-card-body uk-border-rounded"
+                      >
+                        <h3>+ IPO Advisory</h3>
+                      </div>
+                    </a>
+                    <div
+                      class="uk-accordion-content uk-card uk-card-default uk-card-body uk-border-rounded"
+                    >
+                      <p>
+                        Our IPO advisory practitioners collaborate on all
+                        aspects of the underwriting process — we become an
+                        extension of the senior management team providing
+                        expertise, judgment, proprietary data and process
+                        leverage. Ultimately, we aim for a higher level of
+                        control, transparency and insight which clarifies an
+                        often opaque process. Unfiltered and granular
+                        information combined with our judgment will both
+                        anticipate potential issues and guide next steps.
+                      </p>
+                      <p>
+                        Our value add is rooted in our decades of experience and
+                        thousands of transactions as an advisor and an
+                        underwriter. Importantly we are an on-call resource to
+                        consult with when unexpected issues arise.
+                      </p>
+                      <p>
+                        In the early stages of the process, we work with
+                        management to crystallize their equity story in
+                        anticipation of engaging banks, we develop a realistic
+                        timetable, assist in selecting and structuring
+                        underwriting groups, and aid in negotiating fees and
+                        structuring compensation.
+                      </p>
+                      <p>
+                        Deeper in the process we assist in developing the
+                        marketing message, help to engage the research analyst
+                        community, advise on selecting the right execution
+                        market window and help to craft the marketing plan.
+                      </p>
+                      <p>
+                        As our clients approach the marketing launch, we advise
+                        on valuation and go-to-market price range, advise on
+                        transaction size, police the quality of the roadshow
+                        audience, monitor bookbuilding and develop strategies
+                        for optimal pricing, share allocations and aftermarket
+                        trading.
+                      </p>
+                      <p>
+                        Since our founding in 2005, Assetsus LLC has advised on
+                        over 190 IPOs representing approximately $100 billion in
+                        proceeds.
+                      </p>
+
+                      <p>See Our Representative IPO Experience</p>
+                    </div>
+                  </li>
+                  <li>
+                    <a
+                      class="uk-accordion-title"
+                      style="text-decoration: none"
+                      href="#"
+                    >
+                      <div
+                        class="uk-card uk-card-default uk-card-body uk-border-rounded uk-clearfix"
+                      >
+                        <h3>+ Marketed Follow-On Advisory</h3>
+                      </div>
+                    </a>
+                    <div
+                      class="uk-accordion-content uk-card uk-card-default uk-card-body uk-border-rounded"
+                    >
+                      <p>
+                        Marketed follow-on offerings can be fragile transactions
+                        – challenging to execute due to an actively traded stock
+                        and the market’s ability to influence the share price.
+                        We guide issuers in maximizing price and investor
+                        quality by focusing on specific tactics to counter
+                        negative market dynamics and add the transparency that
+                        our clients require for informed decisions often made on
+                        short-notice.
+                      </p>
+                      <p>
+                        Since 2005, we have advised on over 165 follow-ons with
+                        $72 billion in proceeds.
+                      </p>
+                    </div>
+                  </li>
+                  <li>
+                    <a
+                      class="uk-accordion-title"
+                      style="text-decoration: none"
+                      href="#"
+                    >
+                      <div
+                        class="uk-card uk-card-default uk-card-body uk-border-rounded"
+                      >
+                        <h3>+ Block Trades</h3>
+                      </div>
+                    </a>
+                    <div
+                      class="uk-accordion-content uk-card uk-card-default uk-card-body uk-border-rounded"
+                    >
+                      <p>
+                        As sellers become more sophisticated, monetizations
+                        through block trades have grown in importance. These
+                        transactions require an intense due diligence and
+                        documentation process with multiple parties within a
+                        very short timeframe. We have the capabilities and
+                        expertise to engage the market with utmost
+                        confidentiality while mitigating risk and enabling
+                        seamless execution for both issuers and potential
+                        bidders. Our judgment, knowledge of bankers’ risk
+                        appetite and process management ultimately ensures best
+                        block pricing for our clients.
+                      </p>
+                      <p>
+                        Assetsus LLC has advised on over 300 block trades since
+                        2005 with nearly $95 billion in proceeds.
+                      </p>
+                    </div>
+                  </li>
+                  <li>
+                    <a
+                      class="uk-accordion-title"
+                      style="text-decoration: none"
+                      href="#"
+                    >
+                      <div
+                        class="uk-card uk-card-default uk-card-body uk-border-rounded"
+                      >
+                        <h3>+ Structured Equity</h3>
+                      </div>
+                    </a>
+                    <div
+                      class="uk-accordion-content uk-card uk-card-default uk-card-body uk-border-rounded"
+                    >
+                      <p>
+                        Structured equity products, including convertibles and
+                        mandatory exchangeables as well as SPACs, ATMs and
+                        structured private placements, are an increasingly
+                        valuable financing tool for our clients. We bring our
+                        decades of expertise in these products to not only help
+                        our clients navigate through the structuring
+                        complexities but also help to ensure the most favorable
+                        pricing outcomes. Importantly, our focus is to bring
+                        transparency to what is often an opaque process and
+                        pricing outcome such that our clients make the most
+                        informed decisions possible. Recent experience include
+                        advisory assignments for a $345mm convert and call
+                        spread for CNX Resources, a $500mm convertible and call
+                        spread for Under Armour and a $135mm pre-IPO private
+                        convertible for SelectQuote.
+                      </p>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <ul class="in-faq-2" data-uk-accordion></ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- section content end -->
+  <!-- section content begin -->
+
+  <!-- section content end -->
+  <!-- section content begin -->
+
+  <!-- section content end -->
+</div>
+
+{% endblock content %} {% block script %}
+<script>
+  var modal = UIkit.modal("#modal-videom");
+  var video = document.getElementById("videom");
+  var playButton = document.getElementById("play-video");
+
+  playButton.addEventListener("click", function () {
+    video.play();
+    playButton.style.display = "none";
+  });
+</script>
+
+{% endblock script %}

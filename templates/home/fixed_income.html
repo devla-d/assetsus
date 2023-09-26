@@ -1,0 +1,105 @@
+{% extends "layouts/home.html" %}
+<!--  -->
+
+<!--  -->
+{% block content %}
+<!-- section content begin -->
+<div class="uk-section uk-margin-small-top">
+  <div class="uk-container">
+    <div class="uk-grid uk-flex uk-flex-center in-blog-1 in-article">
+      <div class="uk-width-3-4@m">
+        <br /><br />
+        <article class="uk-card uk-card-default uk-border-rounded">
+          <div class="uk-card-body">
+            <div class="uk-flex">
+              <div class="uk-flex uk-flex-middle">
+                <p class="uk-text-small uk-text-muted uk-margin-remove">
+                  <span class="uk-margin-small-left uk-margin-small-right"
+                    >•</span
+                  >
+                  Work with us the way you want.
+                  <span class="uk-margin-small-left uk-margin-small-right"
+                    >•</span
+                  >
+                </p>
+              </div>
+            </div>
+            <h2 class="uk-margin-top uk-margin-medium-bottom">FIXED INCOME</h2>
+            <p>
+              We aim to generate consistent outperformance by systematically
+              applying investment themes across securities. We believe that a
+              multi-factor investment approach, harnessing underlying drivers of
+              performance, will generate excess returns that are uncorrelated to
+              other asset classes as well as traditional fixed income managers.
+            </p>
+            <p></p>
+            <!-- TradingView Widget BEGIN -->
+            <!-- TradingView Widget BEGIN -->
+            <!-- TradingView Widget BEGIN -->
+            <div class="tradingview-widget-container">
+              <div class="tradingview-widget-container__widget"></div>
+
+              <script
+                type="text/javascript"
+                src="https://s3.tradingview.com/external-embedding/embed-widget-forex-cross-rates.js"
+                async
+              >
+                {
+                    "width": "100%",
+
+                            "currencies": [
+                                "EUR",
+                                "USD",
+                                "JPY",
+                                "GBP",
+                                "CHF",
+                                "AUD",
+                                "CAD",
+                                "NZD",
+                                "CNY"
+                            ],
+                                "isTransparent": false,
+                                    "colorTheme": "light",
+                                        "locale": "en"
+                }
+              </script>
+            </div>
+            <!-- TradingView Widget END -->
+            <!-- TradingView Widget END -->
+            <!-- TradingView Widget END -->
+            <p></p>
+            <p></p>
+            <h4>INVESTMENT GRADE CORPORATES</h4>
+            <p>
+              Seeks to outperform a core or long duration corporate benchmark.
+              Our investment themes are primarily expressed by within-industry
+              security selection. The strategy does not seek to engage in
+              duration or credit timing.
+            </p>
+            <h4>UNCONSTRAINED BONDS</h4>
+            <p>
+              A cash-benchmarked bond strategy that seeks to deliver positive
+              absolute returns with low correlation to traditional market betas.
+              The strategy primarily utilizes a broad suite of relative value
+              fixed income sub-strategies spanning interest rates, credit, and
+              foreign exchange markets. It also includes a small, dynamic, and
+              diversified allocation to fixed income market risks such as
+              duration, credit, and securitized exposures.
+            </p>
+            <h4>CORE PLUS</h4>
+            <p>
+              Strategy that seeks excess returns through country, maturity,
+              credit, and currency selection. Out-of-benchmark sectors are
+              strictly used to increase security selection breadth, while still
+              targeting the credit and duration profile of the benchmark, and so
+              does not seek to engage in duration timing or sector selection.
+            </p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- section content end -->
+
+{% endblock content %}

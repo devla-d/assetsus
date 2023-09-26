@@ -1,0 +1,126 @@
+{% extends "layouts/home.html" %}
+<!--  -->
+
+<!--  -->
+{% block content %}
+<!-- breadcrumb content end -->
+
+<!-- section content begin -->
+<div class="uk-section uk-margin-small-top">
+  <div class="uk-container">
+    <div class="uk-grid uk-flex uk-flex-center in-blog-1 in-article">
+      <div class="uk-width-3-4@m">
+        <br /><br />
+        <article class="uk-card uk-card-default uk-border-rounded">
+          <div class="uk-card-body">
+            <div class="uk-flex">
+              <div class="uk-flex uk-flex-middle">
+                <p class="uk-text-small uk-text-muted uk-margin-remove">
+                  <span class="uk-margin-small-left uk-margin-small-right"
+                    >•</span
+                  >
+                  On weekends and on business days, investment is available for
+                  23 hours a day.
+                  <span class="uk-margin-small-left uk-margin-small-right"
+                    >•</span
+                  >
+                </p>
+              </div>
+            </div>
+            <h2 class="uk-margin-top uk-margin-medium-bottom">
+              Agricultural Investment
+            </h2>
+            <p>
+              Assets-us uses practical metrics to track, improve, and report
+              sustainability performance of its agriculture investments.
+              assetsus.com practices with regard to ESG are embodied within the
+              principles, policies, and best practices/procedures associated
+              with the assetsus.com’s Stewardship Program. assetsus.com’s
+              stewardship principles provide higher level philosophical guidance
+              on matters relating to ESG across our agricultural investments.
+              Stewardship policies align with the principles and are intended to
+              add value to client investments and assetsus.com’s business by
+              decreasing operational risk and creating efficiencies. At local
+              and regional levels, stewardship best practices and procedures
+              provide specific guidelines that facilitate implementation of
+              assetsus.com’s Stewardship Program.
+            </p>
+            <p></p>
+            <!-- TradingView Widget BEGIN -->
+            <div class="tradingview-widget-container">
+              <div class="tradingview-widget-container__widget"></div>
+
+              <script
+                type="text/javascript"
+                src="https://s3.tradingview.com/external-embedding/embed-widget-forex-cross-rates.js"
+                async
+              >
+                {
+                    "width": "100%",
+
+                    "currencies": [
+                        "EUR",
+                        "USD",
+                        "JPY",
+                        "GBP",
+                        "CHF",
+                        "AUD",
+                        "CAD",
+                        "NZD",
+                        "CNY"
+                    ],
+                    "isTransparent": false,
+                    "colorTheme": "light",
+                    "locale": "en"
+                }
+              </script>
+            </div>
+            <!-- TradingView Widget END -->
+            <p></p>
+            <p></p>
+
+            <h4>Sustainable Agriculture</h4>
+            <p>
+              Our clients’ assets are located across 336,000 acres of prime
+              farmland in major agricultural regions including California, the
+              Midwest, the Mississippi Delta, the Pacific Northwest, the
+              Southern Plains, and Southeast United States; Queensland,
+              Victoria, South Australia and New South Wales Australia; and
+              Quebec and Alberta, Canada.
+            </p>
+            <p>
+              We offer individually managed separate accounts that are fully
+              customized to meet specific client investment objectives.
+              Agricultural investments seek to provide institutional investors
+              with a number of benefits including:
+            </p>
+            <div class="uk-grid uk-child-width-1-1 uk-child-width-1-2@m">
+              <div>
+                <ul class="uk-list uk-list-bullet in-list-check">
+                  <li>Attractive returns</li>
+                  <li>Excellent capital preservation0</li>
+                  <li>Portfolio diversification</li>
+                  <li>Low to moderate risk</li>
+                  <li>
+                    Low correlation to traditional assets such as equities and
+                    bonds
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <p>
+              This site provides an introduction to farmland as an investment
+              opportunity and describes the investment capabilities of HAIG.
+              Please contact us if you have questions about farmland investment
+              fundamentals or if you would like to know more about how we can
+              value add your portfolio.
+            </p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- section content end -->
+
+{% endblock content %}
