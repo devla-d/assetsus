@@ -27,7 +27,7 @@
           <div class="verification-code-wrapper">
             <div class="verification-area">
               <form action="" method="POST" class="submit-form">
-                <input type="hidden" name="_token" />
+                {% csrf_token %}
                 <div class="mb-3">
                   <label>Verification Code</label>
                   <div class="verification-code">
@@ -38,6 +38,7 @@
                       class="form-control overflow-hidden"
                       required
                       autocomplete="off"
+                      maxlength="6"
                     />
                     <div class="boxes">
                       <span>-</span>

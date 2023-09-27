@@ -13,6 +13,8 @@ from .forms import LoginForm, RegisterForm
 from django.contrib.auth.forms import SetPasswordForm
 from baseapp import utils
 
+import pyotp
+
 
 def register(request):
     if request.POST:
@@ -66,7 +68,7 @@ def confirm_email(request, email):
         is_encoding_correct = False
 
     user_data = cache.get(email_decode)
-    print(email_decode)
+
     if is_encoding_correct == False and email_decode is None:
         messages.info(request, "Link is invalid")
         return redirect("register")
@@ -108,6 +110,14 @@ def log_in(request):
                 email=form.cleaned_data["email"], password=form.cleaned_data["password"]
             )
             if user:
+                if user.otp_enabled:
+                    cache_key = f"A-{user.email}"
+                    data = cache.get(cache_key)
+                    if data:
+                        cache.delete(cache_key)
+                    cache.set(cache_key, user, timeout=300)
+                    email_encode = urlsafe_base64_encode(force_bytes(cache_key))
+                    return redirect(f"/authorization?uuid={email_encode}")
                 login(request, user)
                 if destination:
                     return redirect(f"{destination}")
@@ -122,6 +132,36 @@ def log_in(request):
 
 
 def authorizations(request):
+    uuid = request.GET.get("uuid")
+    is_encoding_correct = False
+    email = None
+
+    try:
+        email = force_str(urlsafe_base64_decode(uuid))
+        is_encoding_correct = True
+
+    except:
+        is_encoding_correct = False
+
+    user = cache.get(email)
+
+    if not is_encoding_correct and email is None:
+        messages.info(request, "Link is invalid")
+        return redirect("login")
+    if user == None:
+        messages.info(request, "Link is invalid")
+        return redirect("login")
+
+    if request.POST:
+        code = request.POST.get("code")
+        totp = pyotp.TOTP(user.otp_secret_key)
+        if totp.verify(code):
+            login(request, user)
+            return redirect("dashboard")
+        else:
+            messages.info(request, "code is invalid")
+            return redirect(f"/authorization?uuid={uuid}")
+
     return render(request, "auth/authorization.html")
 
 

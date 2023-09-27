@@ -1,0 +1,160 @@
+{% extends "layouts/auth.html" %} {% load crispy_forms_tags %}
+<!--  -->
+{% block title %} 2fa {% endblock title %}
+<!--  -->
+{% block content %}
+<div class="page-wrapper">
+  <!-- header-section start  -->
+  {% include "components/user_header.html" %}
+  <!-- header-section end  -->
+  <!-- breadcrum -->
+  {% include "components/user_breadcrum.html" with name="2FA Setting"%}
+  <!-- breadcrum -->
+
+  <div class="section-wrapper">
+    <div class="cmn-section">
+      <div class="container">
+        <div class="row justify-content-center gy-4">
+          {% if user.otp_enabled %}
+
+          <div class="col-md-6">
+            <div class="card custom--card">
+              <div class="card-header">
+                <h5 class="title">Disable 2FA Security</h5>
+              </div>
+              <form action="{% url 'disable_2fa' %}" method="POST">
+                <div class="card-body">
+                  {% csrf_token %}
+
+                  <div class="form-group">
+                    <label class="form-label required" for="code"
+                      >Google Authenticatior OTP</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control form--control"
+                      name="code"
+                      required=""
+                      id="code"
+                    />
+                  </div>
+                  <button type="submit" class="btn--base w-100">Submit</button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          {% else %}
+
+          <div class="col-md-6">
+            <div class="card custom--card">
+              <div class="card-header">
+                <h5 class="title">Add Your Account</h5>
+              </div>
+
+              <div class="card-body">
+                <h6 class="mb-3">
+                  Use the QR code or setup key on your Google Authenticator app
+                  to add your account.
+                </h6>
+
+                <div class="form-group mx-auto text-center">
+                  <img
+                    class="mx-auto"
+                    src="{{ qr_code|safe }}"
+                    alt="QR Code"
+                    width="200px"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Setup Key</label>
+                  <div class="input-group">
+                    <input
+                      type="text"
+                      name="key"
+                      value="{{otp_secret_key}}"
+                      class="form-control form--control referralURL"
+                      readonly
+                    />
+                    <button
+                      type="button"
+                      class="input-group-text copytext"
+                      id="copyBoard"
+                    >
+                      <i class="fa fa-copy"></i>
+                    </button>
+                  </div>
+                </div>
+
+                <label><i class="fa fa-info-circle"></i> Help</label>
+                <p>
+                  Google Authenticator is a multifactor app for mobile devices.
+                  It generates timed codes used during the 2-step verification
+                  process. To use Google Authenticator, install the Google
+                  Authenticator application on your mobile device.
+                  <a
+                    class="text--base"
+                    href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=en"
+                    target="_blank"
+                    >Download</a
+                  >
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="card custom--card">
+              <div class="card-header">
+                <h5 class="title">Enable 2FA Security</h5>
+              </div>
+              <form action="" method="POST">
+                <div class="card-body">
+                  {% csrf_token %}
+                  <input type="hidden" name="key" value="{{otp_secret_key}}" />
+                  <div class="form-group">
+                    <label class="form-label">Google Authenticatior OTP</label>
+                    <input
+                      type="text"
+                      class="form-control form--control"
+                      name="code"
+                      required
+                    />
+                  </div>
+                  <button type="submit" class="btn--base w-100">Submit</button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- footer-section start  -->
+  {% include "components/auth_footer.html" %}
+  <!-- footer-section end  -->
+</div>
+
+{% endblock content %} {% block script %}
+<script>
+  (function ($) {
+    "use strict";
+    $("#copyBoard").click(function () {
+      var copyText = document.getElementsByClassName("referralURL");
+      copyText = copyText[0];
+      copyText.select();
+      copyText.setSelectionRange(0, 99999);
+      /*For mobile devices*/
+      document.execCommand("copy");
+      copyText.blur();
+      this.classList.add("copied");
+      setTimeout(() => this.classList.remove("copied"), 1500);
+    });
+  })(jQuery);
+</script>
+
+{% endblock script %}

@@ -31,6 +31,7 @@ class UserAdmin(BaseUserAdmin):
                     "date_of_birth",
                     "phone",
                     "unique_id",
+                    "otp_secret_key",
                 )
             },
         ),

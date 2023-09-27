@@ -6,9 +6,13 @@ from django.utils import timezone
 from datetime import timedelta
 from uuid import uuid4
 import qrcode
+
 from io import BytesIO
 
+
 import pyotp
+
+from base64 import b64encode
 
 
 def generate_totp_secret():
@@ -17,12 +21,15 @@ def generate_totp_secret():
 
 def generate_qr_code(secret, user):
     totp_uri = pyotp.totp.TOTP(secret).provisioning_uri(
-        user.email, issuer_name="MyAppty"
+        user.username, issuer_name="Assetsus"
     )
+
     img = qrcode.make(totp_uri)
     buffer = BytesIO()
-    img.save(buffer, format="PNG")
-    qr_code = buffer.getvalue()
+    img.save(buffer)
+    buffer.seek(0)
+    encoded_img = b64encode(buffer.read()).decode()
+    qr_code = f"data:image/png;base64,{encoded_img}"
     return qr_code
 
 
