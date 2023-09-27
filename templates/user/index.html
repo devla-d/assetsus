@@ -18,6 +18,7 @@
 
         <div class="row justify-content-center">
           <div class="col-md-12">
+            {% if not user.otp_enabled %}
             <div class="alert border border--warning" role="alert">
               <div class="alert__icon d-flex align-items-center text--warning">
                 <i class="fas fa-user-lock"></i>
@@ -27,17 +28,14 @@
                 <small
                   ><i
                     >To keep safe your account, Please enable
-                    <a
-                      href="https://app.assetsus.com/user/twofactor"
-                      class="link-color"
-                      >2FA</a
-                    >
+                    <a href="{% url 'enable_2fa' %}" class="link-color">2FA</a>
                     security.</i
                   >
                   It will make secure your account and balance.</small
                 >
               </p>
             </div>
+            {% endif %}
 
             <div class="alert border border--info" role="alert">
               <div class="alert__icon d-flex align-items-center text--info">
