@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "captcha",
     "home",
     "accesscontrol",
+    "user",
 ]
 
 MIDDLEWARE = [

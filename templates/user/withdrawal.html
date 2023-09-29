@@ -1,0 +1,229 @@
+{% extends "layouts/auth.html" %} {% load crispy_forms_tags %}
+<!--  -->
+{% block title %} Withdraw funds {% endblock title %}
+<!--  -->
+{% block style %}
+<style>
+  .radio-toolbar input[type="radio"] {
+    opacity: 0;
+    position: fixed;
+    width: 0;
+  }
+
+  .radio-toolbar label {
+    color: #556ee6;
+    display: inline-block;
+    background-color: #fff;
+    padding: 20px 10px;
+    font-size: 25px;
+    border: 2px solid #444;
+    border-radius: 5px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .radio-toolbar label:hover {
+    background-color: #9e9a9a;
+  }
+
+  .radio-toolbar input[type="radio"]:checked + label {
+    background-color: #fd961a;
+    border-color: #fd961a;
+    color: #ffff;
+  }
+  .paymethod {
+    display: flex;
+    justify-content: center;
+  }
+</style>
+{% endblock style %} {% block content %}
+<div class="page-wrapper">
+  <!-- header-section start  -->
+  {% include "components/user_header.html" %}
+  <!-- header-section end  -->
+  <!-- breadcrum -->
+  {% include "components/user_breadcrum.html" with name="Withdraw"%}
+  <!-- breadcrum -->
+
+  <div class="section-wrapper">
+    <div class="cmn-section">
+      <div class="container">
+        <div class="row mb-4 mb-sm-5 justify-content-center">
+          <div class="col-lg-6">
+            <div class="text-end">
+              <a href="/transaction-logs" class="btn btn--base"
+                >Withdraw History</a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-lg-6">
+            <form action="" method="post">
+              {% csrf_token %}
+              <input
+                type="hidden"
+                name="amount_in_coin"
+                id="amount_in_coin"
+                required
+              />
+              <div class="card">
+                <div class="card-body">
+                  <div class="form-group mb-4">
+                    <label class="form-label">Choose a payment method</label>
+                    <div class="paymethod">
+                      <div class="radio-toolbar">
+                        <input
+                          type="radio"
+                          name="mode"
+                          id="mode_perfect_money"
+                          required=""
+                          value="ETH"
+                        /><label for="mode_perfect_money"
+                          ><img src="/assets/img/eth.png" width="30px" />
+                          Eth</label
+                        >
+                      </div>
+                      <div class="radio-toolbar">
+                        <input
+                          type="radio"
+                          name="mode"
+                          id="mode_btc"
+                          required=""
+                          value="BTC"
+                        /><label for="mode_btc"
+                          ><img
+                            src="/assets/img/bitcoin.ee55e6b2.svg"
+                            width="25px"
+                          />
+                          BTC</label
+                        >
+                      </div>
+                      <div class="radio-toolbar">
+                        <input
+                          type="radio"
+                          name="mode"
+                          id="mode_usdt"
+                          required=""
+                          value="USDT"
+                        /><label for="mode_usdt"
+                          ><img src="/assets/img/usdt.png" width="20px" />
+                          USDT</label
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Amount</label>
+                    <div class="input-group">
+                      <input
+                        type="number"
+                        step="any"
+                        name="amount"
+                        id="amount"
+                        class="form-control form--control"
+                        value=""
+                        autocomplete="off"
+                        required
+                        min="1000"
+                      />
+                      <span class="input-group-text bg--base">USD</span>
+                    </div>
+                  </div>
+                  <div class="mb-4">
+                    <h5>
+                      Amount in <span id="coin"></span> :
+                      <code id="coinvalue"></code>
+                    </h5>
+                  </div>
+
+                  <div class="form-group mt-3">
+                    <h4 class="text-50">
+                      Tip :
+                      <small class="text-muted"
+                        >Your withdrawal will be approved within a period of
+                        6-12 Hours, Make sure you
+                        <a href="/update-wallet-address">
+                          add a correct address</a
+                        >
+                        in the settings page. Your Current Balance is :
+                        <span class="text-warning">${{user.balance}}</span>
+                      </small>
+                    </h4>
+                  </div>
+
+                  <button
+                    type="submit"
+                    class="btn--base w-100 mt-3"
+                    id="smt-btm"
+                    disabled
+                  >
+                    Submit
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- footer-section start  -->
+  {% include "components/auth_footer.html" %}
+  <!-- footer-section end  -->
+</div>
+
+{% endblock content %} {% block script %}
+<script>
+  $(document).ready(function (e) {
+    const fromCurrency = "USD";
+    let amount;
+    let tocurrency;
+
+    const payMode = document.getElementsByName("mode");
+    const Amount = document.getElementById("amount");
+    const submit_btn = document.getElementById("smt-btm");
+
+    function getPrice(tocurrency, amount) {
+      const fromCurrency = "USD";
+
+      const url = `https://min-api.cryptocompare.com/data/price?fsym=${fromCurrency}&tsyms=${tocurrency}`;
+
+      fetch(url)
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          const tocurrencyAmount = data[tocurrency];
+          var toamount = (amount * tocurrencyAmount).toLocaleString("en");
+          document.getElementById("coinvalue").innerText = `${toamount}`;
+          document.getElementById("amount_in_coin").value = `${toamount}`;
+          submit_btn.removeAttribute("disabled");
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    }
+
+    payMode.forEach((mode) => {
+      mode.addEventListener("click", () => {
+        tocurrency = mode.value;
+        document.getElementById("coin").innerText = mode.value;
+        // console.log(tocurrency);
+        if (amount != "" && amount != undefined) {
+          getPrice(tocurrency, amount);
+        }
+      });
+    });
+
+    Amount.addEventListener("keyup", () => {
+      amount = Amount.value;
+      console.log(amount);
+      if (amount != "" && tocurrency != undefined) {
+        getPrice(tocurrency, amount);
+      }
+    });
+  });
+</script>
+
+{% endblock script %}

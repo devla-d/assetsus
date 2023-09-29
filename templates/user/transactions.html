@@ -1,0 +1,82 @@
+{% extends "layouts/auth.html" %} {% load crispy_forms_tags %}
+<!--  -->
+{% block title %} Transactions {% endblock title %}
+<!--  -->
+{% block content %}
+<div class="page-wrapper">
+  <!-- header-section start  -->
+  {% include "components/user_header.html" %}
+  <!-- header-section end  -->
+  <!-- breadcrum -->
+  {% include "components/user_breadcrum.html" with name="logs"%}
+  <!-- breadcrum -->
+
+  <div class="section-wrapper">
+    <div class="cmn-section">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-12">
+            <div class="card custom--card">
+              <div class="card-body p-0">
+                <div class="table-responsive--md">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Ref</th>
+                        <th>Type</th>
+                        <th>Amount</th>
+                        <th>Method</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for obj in transactions %}
+                      <tr>
+                        <td>
+                          <strong>{{obj.unique_u}}</strong>
+                        </td>
+
+                        <td>{{obj.trans_type}}</td>
+
+                        <td class="budget">
+                          <span class="fw-bold text--success">
+                            {{obj.amount}} USD
+                          </span>
+                        </td>
+
+                        <td class="budget">{{obj.method}}</td>
+
+                        <td>
+                          <span class="badge bg--info">{{obj.date}}</span>
+                        </td>
+
+                        <td>
+                          {% if obj.status == "pending" %}
+                          <span class="badge bg-warning">Pending</span>
+                          {% elif obj.status == "declined" %}
+                          <span class="badge bg-danger">Declined</span>
+                          {% else %}
+
+                          <span class="badge bg-success">Success</span>
+                          {% endif %}
+                        </td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- footer-section start  -->
+  {% include "components/auth_footer.html" %}
+  <!-- footer-section end  -->
+</div>
+
+{% endblock content %}

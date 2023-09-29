@@ -35,8 +35,7 @@
                 >
               </p>
             </div>
-            {% endif %}
-
+            {% endif %} {% if not user.is_verified %}
             <div class="alert border border--info" role="alert">
               <div class="alert__icon d-flex align-items-center text--info">
                 <i class="fas fa-file-signature"></i>
@@ -48,16 +47,13 @@
                     >Please submit the required KYC information to verify
                     yourself. Otherwise, you couldn't make any withdrawal
                     requests to the system.
-                    <a
-                      href="https://app.assetsus.com/user/kyc-form"
-                      class="link-color"
-                      >Click here</a
-                    >
+                    <a href="/kyc-form" class="link-color">Click here</a>
                     to submit KYC information.</i
                   ></small
                 >
               </p>
             </div>
+            {% endif %}
           </div>
         </div>
         <div class="row justify-content-center">
@@ -249,6 +245,9 @@
       </div>
     </div>
   </div>
+  <!-- footer-section start  -->
+  {% include "components/auth_footer.html" %}
+  <!-- footer-section end  -->
 </div>
 
 {% endblock content %} {% block script %} {% endblock script %}

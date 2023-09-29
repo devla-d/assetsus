@@ -1,0 +1,91 @@
+{% extends "layouts/auth.html" %} {% load crispy_forms_tags %}
+<!--  -->
+{% block title %} Update wallet addresses {% endblock title %}
+<!--  -->
+{% block content %}
+<div class="page-wrapper">
+  <!-- header-section start  -->
+  {% include "components/user_header.html" %}
+  <!-- header-section end  -->
+  <!-- breadcrum -->
+  {% include "components/user_breadcrum.html" with name="Wallet"%}
+  <!-- breadcrum -->
+
+  <div class="section-wrapper">
+    <div class="cmn-section">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-6">
+            <form action="" method="post">
+              {% csrf_token %}
+
+              <div class="card">
+                <div class="card-body">
+                  <div class="mb-4">
+                    <label for="btc_address">BTC Address</label>
+                    <input
+                      class="form-control"
+                      placeholder="Bitcoin"
+                      type="text"
+                      id="btc_address"
+                      name="btc_address"
+                      value="{{user.btc_address}}"
+                      required
+                    />
+                  </div>
+
+                  <div class="mb-4">
+                    <label for="btc_address">USDT Address</label>
+                    <input
+                      class="form-control"
+                      placeholder="Usdt "
+                      type="text"
+                      id="usdt_address"
+                      name="usdt_address"
+                      value="{{user.usdt_address}}"
+                      required
+                    />
+                  </div>
+
+                  <div class="mb-4">
+                    <label for="btc_address">ETH Address</label>
+                    <input
+                      class="form-control"
+                      placeholder="Etheruem"
+                      type="text"
+                      id="eth_address"
+                      name="eth_address"
+                      value="{{user.eth_address}}"
+                      required
+                    />
+                  </div>
+
+                  <div class="form-group mt-3">
+                    <h4 class="text-50">
+                      Tip :
+                      <small class="text-muted">
+                        make sure the address you provide is correct the company
+                        will not be held responsible for any loss of funds due
+                        to wrong wallet address
+                      </small>
+                    </h4>
+                  </div>
+
+                  <button type="submit" class="btn--base w-100 mt-3">
+                    Submit
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- footer-section start  -->
+  {% include "components/auth_footer.html" %}
+  <!-- footer-section end  -->
+</div>
+
+{% endblock content %} {% block script %} {% endblock script %}

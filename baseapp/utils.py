@@ -124,10 +124,7 @@ def check_user(email, model):
 
 
 def check_user_address(user):
-    if user.btc_address and user.eth_address and user.usdt_address:
-        return True
-    else:
-        return False
+    return all([user.btc_address, user.eth_address, user.usdt_address])
 
 
 def get_user_address(user, method):

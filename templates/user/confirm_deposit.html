@@ -1,0 +1,199 @@
+{% extends "layouts/auth.html" %} {% load crispy_forms_tags %}
+<!--  -->
+{% block title %} Confirm deposit {% endblock title %}
+<!--  -->
+{% block content %}
+<div class="page-wrapper">
+  <!-- header-section start  -->
+  {% include "components/user_header.html" %}
+  <!-- header-section end  -->
+  <!-- breadcrum -->
+  {% include "components/user_breadcrum.html" with name="Confirm"%}
+  <!-- breadcrum -->
+
+  <div class="section-wrapper">
+    <div class="cmn-section">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-8">
+            <div class="card custom--card">
+              <div class="card-header card-header-bg">
+                <h5 class="text-center">
+                  <i class="las la-wallet"></i> {{mode}} Payment
+                </h5>
+              </div>
+              <div class="card-body">
+                <form action="" method="POST" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  <input type="hidden" name="method" value="{{mode}}" />
+                  <input type="hidden" name="trans_type" value="deposit" />
+                  <input type="hidden" name="amount" value="{{amount}}" />
+
+                  <div class="row">
+                    <div class="col-md-12">
+                      <p class="text-center mt-2">
+                        You have requested
+                        <b class="text-success">{{amount}} USD</b> , Please pay
+                        <b class="text-success">
+                          <span id="amount_in_crypto_span"></span> {{mode}}
+                        </b>
+                        for successful payment
+                      </p>
+
+                      <div class="my-4">
+                        <p>
+                          <span
+                            style="
+                              color: rgb(96, 108, 121);
+                              font-family: Montserrat, sans-serif;
+                            "
+                            >Kindly Make Payment to the Wallet Address</span
+                          >
+                        </p>
+
+                        <div style="font-family: Montserrat, sans-serif">
+                          <span style="color: rgb(83, 95, 107)">below.</span>
+                        </div>
+
+                        <div class="form-group">
+                          <div class="input-group">
+                            <input
+                              type="text"
+                              name="text"
+                              class="form-control form--control addressL"
+                              value=" {{address}}"
+                              readonly
+                            />
+                            <span
+                              class="input-group-text copytext copyBoard copyBoardi"
+                              id="copyBoard"
+                              onclick="copyText('addressL','copyBoardi')"
+                            >
+                              <i class="fa fa-copy"></i>
+                            </span>
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <label for="">Amount in {{mode}}</label>
+                          <div class="input-group">
+                            <input
+                              id="coinvalue"
+                              type="text"
+                              name="text"
+                              class="form-control form--control amountT"
+                              readonly
+                            />
+                            <span
+                              class="input-group-text copytext copyBoard copyBoardii"
+                              id="copyBoard"
+                              onclick="copyText('amountT','copyBoardii')"
+                            >
+                              <i class="fa fa-copy"></i>
+                            </span>
+                          </div>
+                        </div>
+                        <div style="font-family: Montserrat, sans-serif">
+                          <br />
+                        </div>
+                        <div style="font-family: Montserrat, sans-serif"></div>
+                        <div style="font-family: Montserrat, sans-serif">
+                          <span
+                            style="
+                              color: rgb(142, 169, 194);
+                              font-size: 1rem;
+                              -webkit-tap-highlight-color: transparent;
+                              text-size-adjust: 100%;
+                            "
+                            >Provide Us With A Proof Of Payment using the form
+                            below after payment.</span
+                          ><br />
+                        </div>
+                        <div style="font-family: Montserrat, sans-serif">
+                          <br />Note: Kindly check or confirm that you are
+                          making payment to the correct wallet address listed.
+                        </div>
+                        <!-- </p> -->
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label class="form-label">Proof of Payment </label>
+
+                      <input
+                        type="file"
+                        class="form-control form--control"
+                        name="prove_img"
+                        required
+                        accept=" .jpg,  .jpeg,  .png,  .pdf, "
+                      />
+                      <pre class="text--base mt-1">
+Supported mimes: jpg,jpeg,png,pdf</pre
+                      >
+                    </div>
+
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <button type="submit" class="btn--base w-100">
+                          Pay Now
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- footer-section start  -->
+  {% include "components/auth_footer.html" %}
+  <!-- footer-section end  -->
+</div>
+
+{% endblock content %} {% block script %}
+<script>
+  function copyText(class_name, copyBoard) {
+    var copyText = document.getElementsByClassName(`${class_name}`);
+    var tooltip = document.getElementsByClassName(`${copyBoard}`)[0];
+
+    copyText = copyText[0];
+    copyText.select();
+    copyText.setSelectionRange(0, 99999);
+
+    /*For mobile devices*/
+    document.execCommand("copy");
+    copyText.blur();
+    tooltip.classList.add("copied");
+    setTimeout(() => tooltip.classList.remove("copied"), 1500);
+  }
+</script>
+
+<script>
+  function getPrice() {
+    const fromCurrency = "USD";
+    const tocurrency = "{{mode}}";
+    const amount = parseInt("{{amount}}");
+
+    console.log(fromCurrency, tocurrency, amount);
+    const url = `https://min-api.cryptocompare.com/data/price?fsym=${fromCurrency}&tsyms=${tocurrency}`;
+
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        const tocurrencyAmount = data[tocurrency];
+        var tot_value = `${(amount * tocurrencyAmount).toFixed(3)}`;
+        document.getElementById("coinvalue").value = tot_value;
+        document.getElementById("amount_in_crypto_span").innerText = tot_value;
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }
+  getPrice();
+</script>
+
+{% endblock script %}
