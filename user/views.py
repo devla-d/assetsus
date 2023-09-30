@@ -6,7 +6,7 @@ from django.contrib import messages
 
 import pyotp
 
-from user.models import Notification, Transactions
+from user.models import Notification, Transactions, Packages
 
 from .forms import DepositForm, KycForm, UpdateUserForm
 
@@ -18,7 +18,8 @@ def index(request):
 
 @login_required()
 def plan(request):
-    return render(request, "user/plan.html")
+    packages = Packages.objects.all()
+    return render(request, "user/plan.html", {"packages": packages})
 
 
 @login_required()

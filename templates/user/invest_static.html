@@ -11,30 +11,6 @@
   {% include "components/user_breadcrum.html" with name="Investments"%}
   <!-- breadcrum -->
   <div class="section-wrapper">
-    <script>
-      "use strict";
-
-      function createCountDown(elementId, sec) {
-        var tms = sec;
-        var x = setInterval(function () {
-          var distance = tms * 1000;
-          var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-          var hours = Math.floor(
-            (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-          );
-          var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-          var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-          document.getElementById(elementId).innerHTML =
-            days + "d: " + hours + "h " + minutes + "m " + seconds + "s ";
-          if (distance < 0) {
-            clearInterval(x);
-            document.getElementById(elementId).innerHTML = "COMPLETE";
-          }
-          tms--;
-        }, 1000);
-      }
-    </script>
-
     <section class="pb-60 pt-60">
       <div class="container">
         <div class="row gy-4 mb-4">
@@ -60,14 +36,10 @@
                 <div
                   class="d-flex flex-wrap justify-content-between mt-3 mt-sm-4 gap-2"
                 >
-                  <a
-                    href="https://app.assetsus.com/plan"
-                    class="btn btn--sm btn--base"
+                  <a href="/plans" class="btn btn--sm btn--base"
                     >Invest Now <i class="las la-arrow-right fs--12px ms-1"></i
                   ></a>
-                  <a
-                    href="https://app.assetsus.com/user/withdraw"
-                    class="btn btn--sm btn--base"
+                  <a href="/withdraw-funds" class="btn btn--sm btn--base"
                     >Withdraw Now
                     <i class="las la-arrow-right fs--12px ms-1"></i
                   ></a>
@@ -87,12 +59,12 @@
         <div class="row justify-content-center mt-2">
           <div class="col-md-12">
             <div class="text-end mb-3">
-              <a
-                href="https://app.assetsus.com/user/invest/log"
+              <!-- <a
+                href="#"
                 class="btn btn--base"
               >
                 View All
-              </a>
+              </a> -->
             </div>
           </div>
           <div class="col-md-12">

@@ -1,5 +1,7 @@
 {% extends "layouts/auth.html" %} {% load crispy_forms_tags %}
 <!--  -->
+{% load humanize %}
+<!--  -->
 {% block title %} Plans {% endblock title %}
 <!--  -->
 {% block content %}
@@ -20,22 +22,21 @@
               <a href="/investments" class="btn btn--base"> My Investments </a>
             </div>
           </div>
+          {% for obj in packages %}
           <div class="col-xl-3 col-lg-4 col-md-6">
             <div
               class="package-card text-center bg_img"
-              data-background="https://app.assetsus.com/assets/templates/bit_gold//images/bg/bg-4.png"
+              data-background="/assets/auth/templates/bit_gold//images/bg/bg-4.png"
             >
-              <h4 class="package-card__title base--color mb-2">Starter Plan</h4>
+              <h4 class="package-card__title base--color mb-2">{{obj.name}}</h4>
 
               <ul class="package-card__features mt-4">
-                <li>Return 0.62%</li>
+                <li>Return {{obj.roi}}%</li>
 
-                <li>Every Hour(s)</li>
-                <li>For 720 Hour(s)</li>
-                <li>Total 446.4%</li>
+                <li>Duration : {{obj.duration}}days</li>
               </ul>
               <div class="package-card__range mt-5 base--color">
-                $1,000.00 - $9,999.00
+                ${{ obj.min_amount|intcomma }} - ${{obj.max_amount}}
               </div>
               <a
                 href="javascript:void(0)"
@@ -48,118 +49,7 @@
             </div>
             <!-- package-card end -->
           </div>
-          <div class="col-xl-3 col-lg-4 col-md-6">
-            <div
-              class="package-card text-center bg_img"
-              data-background="https://app.assetsus.com/assets/templates/bit_gold//images/bg/bg-4.png"
-            >
-              <h4 class="package-card__title base--color mb-2">Silver Plan</h4>
-
-              <ul class="package-card__features mt-4">
-                <li>Return 0.83%</li>
-
-                <li>Every Hour(s)</li>
-                <li>For 720 Hour(s)</li>
-                <li>Total 597.6%</li>
-              </ul>
-              <div class="package-card__range mt-5 base--color">
-                $10,000.00 - $49,999.00
-              </div>
-              <a
-                href="javascript:void(0)"
-                data-bs-toggle="modal"
-                data-bs-target="#investModal"
-                data-plan='{"id":2,"name":"Silver Plan","minimum":"10000.00000000","maximum":"49999.00000000","fixed_amount":"0.00000000","interest":"0.83000000","interest_type":1,"time":"1","time_name":null,"status":1,"featured":0,"capital_back":0,"lifetime":0,"repeat_time":"720","created_at":"2022-07-01T10:14:09.000000Z","updated_at":"2023-03-17T14:26:38.000000Z"}'
-                class="btn--base btn-md mt-4 investModal"
-                >Invest Now</a
-              >
-            </div>
-            <!-- package-card end -->
-          </div>
-          <div class="col-xl-3 col-lg-4 col-md-6">
-            <div
-              class="package-card text-center bg_img"
-              data-background="https://app.assetsus.com/assets/templates/bit_gold//images/bg/bg-4.png"
-            >
-              <h4 class="package-card__title base--color mb-2">Gold Plan</h4>
-
-              <ul class="package-card__features mt-4">
-                <li>Return 1.00%</li>
-
-                <li>Every Hour(s)</li>
-                <li>For 720 Hour(s)</li>
-                <li>Total 720%</li>
-              </ul>
-              <div class="package-card__range mt-5 base--color">
-                $50,000.00 - $500,000.00
-              </div>
-              <a
-                href="javascript:void(0)"
-                data-bs-toggle="modal"
-                data-bs-target="#investModal"
-                data-plan='{"id":4,"name":"Gold Plan","minimum":"50000.00000000","maximum":"500000.00000000","fixed_amount":"0.00000000","interest":"1.00000000","interest_type":1,"time":"1","time_name":null,"status":1,"featured":0,"capital_back":0,"lifetime":0,"repeat_time":"720","created_at":"2022-07-01T10:16:25.000000Z","updated_at":"2023-03-17T14:26:57.000000Z"}'
-                class="btn--base btn-md mt-4 investModal"
-                >Invest Now</a
-              >
-            </div>
-            <!-- package-card end -->
-          </div>
-          <div class="col-xl-3 col-lg-4 col-md-6">
-            <div
-              class="package-card text-center bg_img"
-              data-background="https://app.assetsus.com/assets/templates/bit_gold//images/bg/bg-4.png"
-            >
-              <h4 class="package-card__title base--color mb-2">Cannabis</h4>
-
-              <ul class="package-card__features mt-4">
-                <li>Return 92.60%</li>
-
-                <li>Every Week(s)</li>
-                <li>For 6 Week(s)</li>
-                <li>Total 555.6%</li>
-              </ul>
-              <div class="package-card__range mt-5 base--color">
-                $30,000.00 - $20,000,000.00
-              </div>
-              <a
-                href="javascript:void(0)"
-                data-bs-toggle="modal"
-                data-bs-target="#investModal"
-                data-plan='{"id":7,"name":"Cannabis","minimum":"30000.00000000","maximum":"20000000.00000000","fixed_amount":"0.00000000","interest":"92.60000000","interest_type":1,"time":"168","time_name":null,"status":1,"featured":0,"capital_back":0,"lifetime":0,"repeat_time":"6","created_at":"2022-07-06T06:14:41.000000Z","updated_at":"2023-03-17T13:49:07.000000Z"}'
-                class="btn--base btn-md mt-4 investModal"
-                >Invest Now</a
-              >
-            </div>
-            <!-- package-card end -->
-          </div>
-          <div class="col-xl-3 col-lg-4 col-md-6">
-            <div
-              class="package-card text-center bg_img"
-              data-background="https://app.assetsus.com/assets/templates/bit_gold//images/bg/bg-4.png"
-            >
-              <h4 class="package-card__title base--color mb-2">Special plan</h4>
-
-              <ul class="package-card__features mt-4">
-                <li>Return 4.50%</li>
-
-                <li>Every Day(s)</li>
-                <li>For 183 Day(s)</li>
-                <li>Total 823.5%</li>
-              </ul>
-              <div class="package-card__range mt-5 base--color">
-                $20,000.00 - $1,000,000.00
-              </div>
-              <a
-                href="javascript:void(0)"
-                data-bs-toggle="modal"
-                data-bs-target="#investModal"
-                data-plan='{"id":9,"name":"Special plan","minimum":"20000.00000000","maximum":"1000000.00000000","fixed_amount":"0.00000000","interest":"4.50000000","interest_type":1,"time":"24","time_name":null,"status":1,"featured":0,"capital_back":0,"lifetime":0,"repeat_time":"183","created_at":"2023-03-06T16:11:01.000000Z","updated_at":"2023-03-06T16:12:59.000000Z"}'
-                class="btn--base btn-md mt-4 investModal"
-                >Invest Now</a
-              >
-            </div>
-            <!-- package-card end -->
-          </div>
+          {% endfor %}
 
           <div class="modal fade" id="investModal">
             <div class="modal-dialog modal-dialog-centered modal-content-bg">
@@ -172,10 +62,7 @@
                     <i class="las la-times"></i>
                   </button>
                 </div>
-                <form
-                  action="https://app.assetsus.com/user/invest"
-                  method="post"
-                >
+                <form action="" method="post">
                   <input
                     type="hidden"
                     name="_token"
@@ -187,53 +74,6 @@
                       <h6 class="text-center investAmountRange"></h6>
                       <p class="text-center mt-1 interestDetails"></p>
                       <p class="text-center interestValidity"></p>
-
-                      <label>Select Wallet</label>
-                      <select
-                        class="form-control form-select"
-                        name="wallet_type"
-                        required
-                      >
-                        <option value="">Select One</option>
-                        <option value="deposit_wallet">
-                          Deposit Wallet - $50.00
-                        </option>
-                        <!---->
-                        <option
-                          value="5"
-                          data-gateway='{"id":5,"name":"Bank Wire Transfer","currency":"USD","symbol":"","method_code":1004,"gateway_alias":"bank_wire_transfer","min_amount":"100.00000000","max_amount":"10000000.00000000","percent_charge":"0.00","fixed_charge":"12.00000000","rate":"1.00000000","image":null,"gateway_parameter":null,"created_at":"2023-02-01T17:05:39.000000Z","updated_at":"2023-02-02T02:03:47.000000Z","method":{"id":53,"form_id":22,"code":"1004","name":"Bank Wire Transfer","alias":"bank_wire_transfer","status":true,"gateway_parameters":"[]","supported_currencies":[],"crypto":0,"extra":null,"description":"&lt;span style=\"color: rgb(33, 37, 41); font-family: Montserrat, sans-serif;\"&gt;For Proper Processing Enter Your Correct Details Below. &lt;br&gt;This is for withdrawal for Deposit through this method contact admin&lt;\/span&gt;&lt;br&gt;","created_at":"2023-02-01T17:05:39.000000Z","updated_at":"2023-02-02T02:03:20.000000Z"}}'
-                        >
-                          Bank Wire Transfer
-                        </option>
-                        <option
-                          value="2"
-                          data-gateway='{"id":2,"name":"BNB","currency":"USD","symbol":"","method_code":1001,"gateway_alias":"bnb","min_amount":"100.00000000","max_amount":"10000000.00000000","percent_charge":"0.00","fixed_charge":"0.00000000","rate":"1.00000000","image":null,"gateway_parameter":null,"created_at":"2023-02-01T16:58:40.000000Z","updated_at":"2023-09-22T08:27:42.000000Z","method":{"id":50,"form_id":19,"code":"1001","name":"BNB","alias":"bnb","status":true,"gateway_parameters":"[]","supported_currencies":[],"crypto":0,"extra":null,"description":"&lt;span style=\"color: rgb(33, 37, 41); font-family: Montserrat, sans-serif;\"&gt;Kindly Make Payment to the Wallet Address&lt;\/span&gt;&lt;div style=\"font-family: Montserrat, sans-serif;\"&gt;&lt;span style=\"color: rgb(33, 37, 41);\"&gt;below.&lt;\/span&gt;&lt;\/div&gt;&lt;div style=\"font-family: Montserrat, sans-serif;\"&gt;&lt;span style=\"color: rgb(33, 37, 41);\"&gt;&lt;br&gt;&lt;\/span&gt;&lt;\/div&gt;&lt;div style=\"font-family: Montserrat, sans-serif;\"&gt;WALLET ADDRESS&lt;\/div&gt;&lt;div style=\"font-family: Montserrat, sans-serif;\"&gt;&lt;br&gt;&lt;\/div&gt;&lt;div style=\"font-family: Montserrat, sans-serif;\"&gt;bnb10sq4ke3lr8jn4ur8ta6tmdxkq4t3aavu9k3xgs&lt;br&gt;&lt;\/div&gt;&lt;div style=\"font-family: Montserrat, sans-serif;\"&gt;&lt;br&gt;&lt;\/div&gt;&lt;div style=\"font-family: Montserrat, sans-serif;\"&gt;&lt;\/div&gt;&lt;div style=\"font-family: Montserrat, sans-serif;\"&gt;&lt;span style=\"color: rgb(33, 37, 41); font-size: 1rem; -webkit-tap-highlight-color: transparent; text-size-adjust: 100%;\"&gt;Provide Us With A Proof Of Payment using the form below after payment.&lt;\/span&gt;&lt;br&gt;&lt;\/div&gt;&lt;div style=\"font-family: Montserrat, sans-serif;\"&gt;&lt;br&gt;Note: Kindly check or confirm that you are making payment to the correct wallet address listed.&lt;\/div&gt;","created_at":"2023-02-01T16:58:40.000000Z","updated_at":"2023-09-22T08:27:42.000000Z"}}'
-                        >
-                          BNB
-                        </option>
-                        <option
-                          value="1"
-                          data-gateway='{"id":1,"name":"BTC","currency":"USD","symbol":"","method_code":1000,"gateway_alias":"btc","min_amount":"100.00000000","max_amount":"10000000.00000000","percent_charge":"0.00","fixed_charge":"0.00000000","rate":"1.00000000","image":null,"gateway_parameter":null,"created_at":"2023-02-01T16:57:13.000000Z","updated_at":"2023-09-22T00:32:10.000000Z","method":{"id":49,"form_id":18,"code":"1000","name":"BTC","alias":"btc","status":true,"gateway_parameters":"[]","supported_currencies":[],"crypto":0,"extra":null,"description":"&lt;span style=\"color: rgb(33, 37, 41); font-family: Montserrat, sans-serif;\"&gt;Kindly Make Payment to the Wallet Address&lt;\/span&gt;&lt;div style=\"font-family: Montserrat, sans-serif;\"&gt;&lt;span style=\"color: rgb(33, 37, 41);\"&gt;below.&lt;\/span&gt;&lt;\/div&gt;&lt;div style=\"font-family: Montserrat, sans-serif;\"&gt;&lt;span style=\"color: rgb(33, 37, 41);\"&gt;&lt;br&gt;&lt;\/span&gt;&lt;\/div&gt;&lt;div style=\"font-family: Montserrat, sans-serif;\"&gt;bc1qd5gwct6qelpj3t52dcy9h2q3ursypswkxs4rd3&lt;br&gt;&lt;\/div&gt;&lt;div style=\"font-family: Montserrat, sans-serif;\"&gt;&lt;br&gt;&lt;\/div&gt;&lt;div style=\"font-family: Montserrat, sans-serif;\"&gt;&lt;\/div&gt;&lt;div style=\"font-family: Montserrat, sans-serif;\"&gt;&lt;span style=\"color: rgb(33, 37, 41); font-size: 1rem; -webkit-tap-highlight-color: transparent; text-size-adjust: 100%;\"&gt;Provide Us With A Proof Of Payment using the form below after payment.&lt;\/span&gt;&lt;br&gt;&lt;\/div&gt;&lt;div style=\"font-family: Montserrat, sans-serif;\"&gt;&lt;br&gt;Note: Kindly check or confirm that you are making payment to the correct wallet address listed.&lt;\/div&gt;","created_at":"2023-02-01T16:57:13.000000Z","updated_at":"2023-09-22T00:32:10.000000Z"}}'
-                        >
-                          BTC
-                        </option>
-                        <option
-                          value="3"
-                          data-gateway='{"id":3,"name":"Ethereum-ETH","currency":"USD","symbol":"","method_code":1002,"gateway_alias":"ethereum-eth","min_amount":"100.00000000","max_amount":"10000000.00000000","percent_charge":"0.00","fixed_charge":"0.00000000","rate":"1.00000000","image":null,"gateway_parameter":null,"created_at":"2023-02-01T16:59:29.000000Z","updated_at":"2023-09-22T08:26:52.000000Z","method":{"id":51,"form_id":20,"code":"1002","name":"Ethereum-ETH","alias":"ethereum-eth","status":true,"gateway_parameters":"[]","supported_currencies":[],"crypto":0,"extra":null,"description":"&lt;span style=\"color: rgb(33, 37, 41); font-family: Montserrat, sans-serif;\"&gt;Kindly Make Payment to the Wallet Address&lt;\/span&gt;&lt;div style=\"font-family: Montserrat, sans-serif;\"&gt;&lt;span style=\"color: rgb(33, 37, 41);\"&gt;below.&lt;\/span&gt;&lt;\/div&gt;&lt;div style=\"font-family: Montserrat, sans-serif;\"&gt;&lt;span style=\"color: rgb(33, 37, 41);\"&gt;&lt;br&gt;&lt;\/span&gt;&lt;\/div&gt;&lt;div style=\"font-family: Montserrat, sans-serif;\"&gt;0x36F4527794B39F119bB1D41365cCCb898BcCC35C&lt;br&gt;&lt;\/div&gt;&lt;div style=\"font-family: Montserrat, sans-serif;\"&gt;&lt;br&gt;&lt;\/div&gt;&lt;div style=\"font-family: Montserrat, sans-serif;\"&gt;&lt;\/div&gt;&lt;div style=\"font-family: Montserrat, sans-serif;\"&gt;&lt;span style=\"color: rgb(33, 37, 41); font-size: 1rem; -webkit-tap-highlight-color: transparent; text-size-adjust: 100%;\"&gt;Provide Us With A Proof Of Payment using the form below after payment.&lt;\/span&gt;&lt;br&gt;&lt;\/div&gt;&lt;div style=\"font-family: Montserrat, sans-serif;\"&gt;&lt;br&gt;Note: Kindly check or confirm that you are making payment to the correct wallet address listed.&lt;\/div&gt;","created_at":"2023-02-01T16:59:29.000000Z","updated_at":"2023-09-22T08:26:52.000000Z"}}'
-                        >
-                          Ethereum-ETH
-                        </option>
-                        <option
-                          value="4"
-                          data-gateway='{"id":4,"name":"USDT","currency":"USD","symbol":"","method_code":1003,"gateway_alias":"usdt","min_amount":"100.00000000","max_amount":"10000000.00000000","percent_charge":"0.00","fixed_charge":"0.00000000","rate":"1.00000000","image":null,"gateway_parameter":null,"created_at":"2023-02-01T17:00:21.000000Z","updated_at":"2023-09-22T08:28:26.000000Z","method":{"id":52,"form_id":21,"code":"1003","name":"USDT","alias":"usdt","status":true,"gateway_parameters":"[]","supported_currencies":[],"crypto":0,"extra":null,"description":"&lt;span style=\"color: rgb(33, 37, 41); font-family: Montserrat, sans-serif;\"&gt;Kindly Make Payment to the Wallet Address&lt;\/span&gt;&lt;div style=\"font-family: Montserrat, sans-serif;\"&gt;&lt;span style=\"color: rgb(33, 37, 41);\"&gt;below.&lt;\/span&gt;&lt;\/div&gt;&lt;div style=\"font-family: Montserrat, sans-serif;\"&gt;&lt;span style=\"color: rgb(33, 37, 41);\"&gt;&lt;br&gt;&lt;\/span&gt;&lt;\/div&gt;&lt;div style=\"font-family: Montserrat, sans-serif;\"&gt;0x36F4527794B39F119bB1D41365cCCb898BcCC35C&lt;br&gt;&lt;\/div&gt;&lt;div style=\"font-family: Montserrat, sans-serif;\"&gt;&lt;br&gt;&lt;\/div&gt;&lt;div style=\"font-family: Montserrat, sans-serif;\"&gt;&lt;\/div&gt;&lt;div style=\"font-family: Montserrat, sans-serif;\"&gt;&lt;span style=\"color: rgb(33, 37, 41); font-size: 1rem; -webkit-tap-highlight-color: transparent; text-size-adjust: 100%;\"&gt;Provide Us With A Proof Of Payment using the form below after payment.&lt;\/span&gt;&lt;br&gt;&lt;\/div&gt;&lt;div style=\"font-family: Montserrat, sans-serif;\"&gt;&lt;br&gt;Note: Kindly check or confirm that you are making payment to the correct wallet address listed.&lt;\/div&gt;","created_at":"2023-02-01T17:00:21.000000Z","updated_at":"2023-09-22T08:28:26.000000Z"}}'
-                        >
-                          USDT
-                        </option>
-                      </select>
-                      <code class="gateway-info rate-info d-none"
-                        >Rate: 1 USD = <span class="rate"></span>
-                        <span class="method_currency"></span
-                      ></code>
                     </div>
                     <div class="form-group">
                       <label>Invest Amount</label>
