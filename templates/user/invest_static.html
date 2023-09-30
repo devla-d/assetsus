@@ -1,5 +1,7 @@
 {% extends "layouts/auth.html" %} {% load crispy_forms_tags %}
 <!--  -->
+{% load humanize %}
+<!--  -->
 {% block title %} Investment {% endblock title %}
 <!--  -->
 {% block content %}
@@ -23,13 +25,15 @@
                   <div>
                     <p class="mb-2 fw-bold">Total Invest</p>
                     <h4 class="text--base">
-                      <sup class="top-0 fw-light me-1">$</sup>0.00
+                      <sup class="top-0 fw-light me-1">$</sup
+                      >{{tot_amount_invested|intcomma}}
                     </h4>
                   </div>
                   <div>
                     <p class="mb-2 fw-bold">Total Profit</p>
                     <h4 class="text--base">
-                      <sup class="top-0 fw-light me-1">$</sup> 0
+                      <sup class="top-0 fw-light me-1">$</sup
+                      >{{user.balance|intcomma}}
                     </h4>
                   </div>
                 </div>
@@ -73,16 +77,38 @@
                 <thead>
                   <tr>
                     <th>Plan</th>
-                    <th>Return</th>
-                    <th>Received</th>
-                    <th>Next payment</th>
-                    <th>Top Up</th>
+                    <th>Amount Invested</th>
+                    <th>Profit</th>
+                    <th>Start Date</th>
+                    <th>End date</th>
+                    <th>Status</th>
                   </tr>
                 </thead>
                 <tbody>
+                  {% if investments %} {% for obj in investments %}
+                  <tr>
+                    <th>{{obj.package.name}}</th>
+                    <td>${{obj.amount_invested|intcomma}}</td>
+                    <td>${{obj.amount_earn|intcomma}}</td>
+                    <td>{{obj.date|date:"d-M"}}</td>
+                    <td>{{obj.end_date|date:"d-M"}}</td>
+                    <td>
+                      {% if obj.status == "active" %}
+                      <span class="badge bg-primary">active</span>
+                      {% elif obj.status == "inactive" %}
+                      <span class="badge bg-danger">Ended</span>
+                      {% else %}
+
+                      <span class="badge bg-success">Completed</span>
+                      {% endif %}
+                    </td>
+                  </tr>
+                  {% endfor %} {% else %}
+
                   <tr>
                     <td colspan="100%" class="text-center">Data not found</td>
                   </tr>
+                  {% endif %}
                 </tbody>
               </table>
             </div>

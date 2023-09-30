@@ -58,9 +58,12 @@ STATUS = (
 class Packages(models.Model):
     duration = models.IntegerField()
     name = models.CharField(max_length=40)
-    roi = models.IntegerField()
+    roi = models.FloatField()
     min_amount = models.IntegerField(default=0)
     max_amount = models.IntegerField(default=0)
+
+    def get_tot_roi(self):
+        return round(self.duration * self.roi, 2)
 
     def __str__(self):
         return f"{self.name}"

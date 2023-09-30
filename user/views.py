@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from accesscontrol.models import Kyc
 from baseapp import utils
@@ -6,7 +6,7 @@ from django.contrib import messages
 
 import pyotp
 
-from user.models import Notification, Transactions, Packages
+from user.models import Notification, Transactions, Packages, Investments
 
 from .forms import DepositForm, KycForm, UpdateUserForm
 
@@ -174,7 +174,47 @@ def profile(request):
 
 @login_required()
 def invest_static(request):
-    return render(request, "user/invest_static.html")
+    user = request.user
+    investments = Investments.objects.filter(user=user).order_by("-date")
+    tot_amount_invested = utils.get_total_investment_by_user(Investments, user)
+    print(tot_amount_invested)
+    context = {"tot_amount_invested": tot_amount_invested, "investments": investments}
+    return render(request, "user/invest_static.html", context)
+
+
+@login_required()
+def create_investment_page(request):
+    user = request.user
+    if request.POST:
+        pack_id = int(request.POST.get("plan_id"))
+        amount = int(request.POST.get("amount"))
+
+        package = get_object_or_404(Packages, pk=pack_id)
+        if amount >= package.min_amount or amount <= package.max_amount:
+            if user.deposit_balance >= amount:
+                investment = Investments(
+                    user=user,
+                    amount_invested=amount,
+                    end_date=utils.get_deadline(package.duration),
+                    package=package,
+                )
+                user.deposit_balance -= amount
+                investment.save()
+                user.save()
+                messages.error(request, "Investment Created succesfully")
+                return redirect("invest_static")
+            else:
+                messages.error(request, "Insuficient Funds Please Deposit")
+                return redirect("plan")
+        else:
+            messages.error(
+                request,
+                "Please make sure the amount corresponds with the plans minimum and maximuim amount",
+            )
+            return redirect("plan")
+    else:
+        messages.info(request, "SOMETHING WENT WRONG")
+        return redirect("plan")
 
 
 @login_required()

@@ -1,7 +1,7 @@
 import random
 from django.conf import settings
 from django.utils import timezone
-
+from django.db.models import Sum
 
 from datetime import timedelta
 from uuid import uuid4
@@ -88,8 +88,8 @@ def get_next_destination(request):
     return next
 
 
-def get_deadline(h):
-    return timezone.now() + timedelta(hours=h)
+def get_deadline(days):
+    return timezone.now() + timedelta(days=days)
 
 
 def earnings(amount, perc):
@@ -139,3 +139,12 @@ def get_user_address(user, method):
         address = None
 
     return address
+
+
+def get_total_investment_by_user(cls, user):
+    total_investment = cls.objects.filter(user=user).aggregate(Sum("amount_invested"))[
+        "amount_invested__sum"
+    ]
+    if total_investment is None:
+        total_investment = 0
+    return total_investment

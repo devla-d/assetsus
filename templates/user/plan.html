@@ -32,17 +32,18 @@
 
               <ul class="package-card__features mt-4">
                 <li>Return {{obj.roi}}%</li>
-
+                <li>Every day(s)</li>
                 <li>Duration : {{obj.duration}}days</li>
+                <li>Total {{obj.get_tot_roi}}%</li>
               </ul>
               <div class="package-card__range mt-5 base--color">
-                ${{ obj.min_amount|intcomma }} - ${{obj.max_amount}}
+                ${{ obj.min_amount|intcomma }} - ${{obj.max_amount|intcomma}}
               </div>
               <a
                 href="javascript:void(0)"
                 data-bs-toggle="modal"
                 data-bs-target="#investModal"
-                data-plan='{"id":1,"name":"Starter Plan","minimum":"1000.00000000","maximum":"9999.00000000","fixed_amount":"0.00000000","interest":"0.62000000","interest_type":1,"time":"1","time_name":null,"status":1,"featured":0,"capital_back":0,"lifetime":0,"repeat_time":"720","created_at":"2022-07-01T10:12:19.000000Z","updated_at":"2023-03-17T14:21:12.000000Z"}'
+                data-plan='{"id":{{obj.id}},"name":"{{obj.name}}","minimum":"{{obj.min_amount}}","maximum":"{{obj.max_amount}}","fixed_amount":"0.00000000","interest":"{{obj.roi}}","interest_type":1,"time":"1","time_name":null,"status":1,"featured":0,"capital_back":0,"lifetime":0,"repeat_time":"{{obj.duration}}","created_at":"2022-07-01T10:12:19.000000Z","updated_at":"2023-03-17T14:21:12.000000Z"}'
                 class="btn--base btn-md mt-4 investModal"
                 >Invest Now</a
               >
@@ -62,13 +63,9 @@
                     <i class="las la-times"></i>
                   </button>
                 </div>
-                <form action="" method="post">
-                  <input
-                    type="hidden"
-                    name="_token"
-                    value="Ylv1e08Mg3CRVndGyzapVPmh4zUUoy3gjzLF0DDX"
-                  />
-                  <input type="hidden" name="plan_id" />
+                <form action="{% url 'create_investment' %}" method="post">
+                  {% csrf_token %}
+                  <input type="hidden" name="plan_id" id="plan_id" />
                   <div class="modal-body">
                     <div class="form-group">
                       <h6 class="text-center investAmountRange"></h6>
@@ -127,6 +124,7 @@
       $(".gateway-info").addClass("d-none");
       var modal = $("#investModal");
       var plan = $(this).data("plan");
+      $("#plan_id").val(`${plan.id}`);
 
       modal.find(".planName").text(plan.name);
       modal.find("[name=plan_id]").val(plan.id);
@@ -163,48 +161,16 @@
       if (plan.lifetime == "0") {
         modal
           .find(".interestValidity")
-          .html(
-            `<strong>  Per ${plan.time} hours ,  ${plan.repeat_time} times</strong>`
-          );
+          .html(`<strong>  Daily , for ${plan.repeat_time} daily</strong>`);
       } else {
         modal
           .find(".interestValidity")
-          .html(`<strong>  Per ${plan.time} hours,  life time </strong>`);
+          .html(`<strong> Daily,  life time </strong>`);
       }
     });
 
     $("[name=amount]").on("input", function () {
       $("[name=wallet_type]").trigger("change");
-    });
-
-    $("[name=wallet_type]").change(function () {
-      var amount = $("[name=amount]").val();
-      if (
-        $(this).val() != "deposit_wallet" &&
-        $(this).val() != "interest_wallet" &&
-        amount
-      ) {
-        var resource = $("select[name=wallet_type] option:selected").data(
-          "gateway"
-        );
-        var fixed_charge = parseFloat(resource.fixed_charge);
-        var percent_charge = parseFloat(resource.percent_charge);
-        var charge = parseFloat(
-          fixed_charge + (amount * percent_charge) / 100
-        ).toFixed(2);
-        $(".charge").text(charge);
-        $(".rate").text(parseFloat(resource.rate));
-        $(".gateway-info").removeClass("d-none");
-        if (resource.currency == "USD") {
-          $(".rate-info").addClass("d-none");
-        } else {
-          $(".rate-info").removeClass("d-none");
-        }
-        $(".method_currency").text(resource.currency);
-        $(".total").text(parseFloat(charge) + parseFloat(amount));
-      } else {
-        $(".gateway-info").addClass("d-none");
-      }
     });
   })(jQuery);
 </script>

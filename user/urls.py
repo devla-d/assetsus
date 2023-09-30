@@ -18,5 +18,6 @@ urlpatterns = [
     path("referrals/", views.referrals, name="referrals"),
     path("profile/", views.profile, name="profile"),
     path("investments/", views.invest_static, name="invest_static"),
+    path("create-investments/", views.create_investment_page, name="create_investment"),
     path("update-wallet-address/", views.update_wallet_page, name="update_wallet_page"),
 ]
