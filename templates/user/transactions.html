@@ -2,7 +2,9 @@
 <!--  -->
 {% load humanize %}
 <!--  -->
-{% block title %} Transactions {% endblock title %} {% block style %}
+{% block title %} Transactions {% endblock title %}
+<!--  -->
+{% block style %}
 <style>
   .mbd {
     display: none;
@@ -66,7 +68,7 @@
                             href="javascript:void(0)"
                             data-bs-toggle="modal"
                             data-bs-target="#transactModal"
-                            data-transaction='{"user":"{{obj.user.get_fullname}}","id":{{obj.id}},"ref":"{{obj.unique_u}}","type":"{{obj.trans_type}}","amount":"{{obj.amount}}", "method":"{{obj.method}}","date":"{{obj.date|date:"Y-M-D g:iA"}}","status":"{{obj.status}}"}'
+                            data-transaction='{"user":"{{obj.user.get_fullname}}","id":{{obj.id}},"ref":"{{obj.unique_u}}","type":"{{obj.trans_type}}","amount":"{{obj.amount}}", "method":"{{obj.method}}","date":"{{obj.date|date:"Y-M-D g:iA"}}","amountc":"{{obj.amount_in_coin}}","status":"{{obj.status}}"}'
                             class="btn--base btn-md mt-4 transactModal"
                             >Details</a
                           >
@@ -82,14 +84,15 @@
                       <tr>
                         <th>Ref</th>
                         <th>Type</th>
-                        <th>Amount</th>
+                        <th>Amount(USD)</th>
+                        <th>Amount(Coin)</th>
                         <th>Method</th>
                         <th>Date</th>
                         <th>Status</th>
                       </tr>
                     </thead>
                     <tbody>
-                      {% for obj in transactions %}
+                      {% if transactions %} {% for obj in transactions %}
                       <tr>
                         <td>
                           <strong>{{obj.unique_u}}</strong>
@@ -100,6 +103,12 @@
                         <td class="budget">
                           <span class="fw-bold text--success">
                             ${{obj.amount|intcomma}}
+                          </span>
+                        </td>
+
+                        <td class="budget">
+                          <span class="fw-bold text--success">
+                            <code>{{obj.amount_in_coin}}</code>
                           </span>
                         </td>
 
@@ -120,7 +129,14 @@
                           {% endif %}
                         </td>
                       </tr>
-                      {% endfor %}
+                      {% endfor %} {% else %}
+
+                      <tr>
+                        <td colspan="100%" class="text-center">
+                          Data not found
+                        </td>
+                      </tr>
+                      {% endif %}
                     </tbody>
                   </table>
                 </div>
@@ -153,11 +169,23 @@
                   <span id="t_user"></span>
                 </td>
               </tr>
+              <tr>
+                <td>Type</td>
+                <td class="text-center">
+                  <span id="t_type"></span>
+                </td>
+              </tr>
 
               <tr>
-                <td>Amount</td>
-                <td class="text-center text-danger">
+                <td>Amount(USD)</td>
+                <td class="text-center text-info">
                   $<span id="t_amount"></span>
+                </td>
+              </tr>
+              <tr>
+                <td>Amount(Coin)</td>
+                <td class="text-center text-info">
+                  <span id="t_amountc"></span>
                 </td>
               </tr>
 
@@ -188,7 +216,7 @@
             class="btn btn-success btn-md"
             data-bs-dismiss="modal"
           >
-            close
+            Ok
           </button>
         </div>
         <!--  -->
@@ -222,7 +250,11 @@
       }
 
       document.getElementById("t_user").innerText = plan.ref;
+      document.getElementById("t_type").innerText = plan.type;
       document.getElementById("t_amount").innerText = plan.amount;
+      document.getElementById(
+        "t_amountc"
+      ).innerHTML = `<code>${plan.amountc}</code>${plan.method}`;
       document.getElementById("t_method").innerText = plan.method;
       document.getElementById("t_date").innerText = plan.date;
       document.getElementById(

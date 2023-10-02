@@ -1,5 +1,7 @@
 {% extends "layouts/auth.html" %} {% load crispy_forms_tags %}
 <!--  -->
+{% load humanize %}
+<!--  -->
 {% block title %} Dashboard {%endblock title %}
 <!--  -->
 {% block content %}
@@ -62,8 +64,10 @@
               <div class="col-xl-4 col-sm-6 mb-30">
                 <div class="d-widget d-flex justify-content-between gap-5">
                   <div class="left-content">
-                    <span class="caption">Deposit Wallet Balance</span>
-                    <h4 class="currency-amount">$50</h4>
+                    <span class="caption">Deposit Balance</span>
+                    <h4 class="currency-amount">
+                      ${{user.deposit_balance|intcomma}}
+                    </h4>
                   </div>
                   <div class="icon ms-auto">
                     <i class="las la-dollar-sign"></i>
@@ -74,8 +78,8 @@
               <div class="col-xl-4 col-sm-6 mb-30">
                 <div class="d-widget d-flex justify-content-between gap-5">
                   <div class="left-content">
-                    <span class="caption">Interest Wallet Balance</span>
-                    <h4 class="currency-amount">$0</h4>
+                    <span class="caption">Interest Balance</span>
+                    <h4 class="currency-amount">${{user.balance|intcomma}}</h4>
                   </div>
                   <div class="icon ms-auto">
                     <i class="las la-wallet"></i>
@@ -87,7 +91,9 @@
                 <div class="d-widget d-flex justify-content-between gap-5">
                   <div class="left-content">
                     <span class="caption">Total Invest</span>
-                    <h4 class="currency-amount">$0</h4>
+                    <h4 class="currency-amount">
+                      ${{tot_amount_invested|intcomma}}
+                    </h4>
                   </div>
                   <div class="icon ms-auto">
                     <i class="las la-cubes"></i>
@@ -99,7 +105,7 @@
                 <div class="d-widget d-flex justify-content-between gap-5">
                   <div class="left-content">
                     <span class="caption">Total Deposit</span>
-                    <h4 class="currency-amount">$0</h4>
+                    <h4 class="currency-amount">${{total_deposit|intcomma}}</h4>
                   </div>
                   <div class="icon ms-auto">
                     <i class="las la-credit-card"></i>
@@ -111,7 +117,9 @@
                 <div class="d-widget d-flex justify-content-between gap-5">
                   <div class="left-content">
                     <span class="caption">Total Withdraw</span>
-                    <h4 class="currency-amount">$0</h4>
+                    <h4 class="currency-amount">
+                      ${{user.total_withdraw|intcomma}}
+                    </h4>
                   </div>
                   <div class="icon ms-auto">
                     <i class="las la-cloud-download-alt"></i>
@@ -123,7 +131,7 @@
                 <div class="d-widget d-flex justify-content-between gap-5">
                   <div class="left-content">
                     <span class="caption">Referral Earnings</span>
-                    <h4 class="currency-amount">$0.00</h4>
+                    <h4 class="currency-amount">${{user.referral_bonus}}</h4>
                   </div>
                   <div class="icon ms-auto">
                     <i class="las la-user-friends"></i>
@@ -135,35 +143,6 @@
             <!-- row end -->
             <div class="row mt-50">
               <div class="col-lg-12">
-                <div class="table-responsive--md">
-                  <table class="table style--two">
-                    <thead>
-                      <tr>
-                        <th>Date</th>
-                        <th>Transaction ID</th>
-                        <th>Amount</th>
-                        <th>Wallet</th>
-                        <th>Details</th>
-                        <th>Post Balance</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>19/09/2023</td>
-                        <td><span class="text-primary">HU3CTS4SK6CV</span></td>
-
-                        <td>
-                          <span class="text-success">+ $50</span>
-                        </td>
-                        <td>
-                          <span class="badge bg-info">Deposit Wallet</span>
-                        </td>
-                        <td>You have got registration bonus</td>
-                        <td><span> $50</span></td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
                 <div class="tradingview-widget-copyright" style="width: 100%">
                   <a href="#" rel="noopener" target="_blank"
                     ><span class="blue-text"></span>

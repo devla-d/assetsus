@@ -123,6 +123,16 @@ def check_user(email, model):
     return account
 
 
+def check_user_username(username, model):
+    account = None
+    try:
+        account = model.objects.get(username__exact=username)
+    except model.DoesNotExist:
+        account = None
+
+    return account
+
+
 def check_user_address(user):
     return all([user.btc_address, user.eth_address, user.usdt_address])
 
@@ -148,3 +158,38 @@ def get_total_investment_by_user(cls, user):
     if total_investment is None:
         total_investment = 0
     return total_investment
+
+
+def get_total_adeposit_by_user(cls, user):
+    total_deposit = cls.objects.filter(user=user, status="approved").aggregate(
+        Sum("amount")
+    )["amount__sum"]
+    if total_deposit is None:
+        total_deposit = 0
+    return total_deposit
+
+
+def get_user_balance(user, ty_pe):
+    bal = 0
+    if ty_pe == 1:
+        bal = user.balance
+    elif ty_pe == 2:
+        bal = user.referral_bonus
+    else:
+        bal = 0
+    return int(bal)
+
+
+def deduct_user_balance(user, ty_pe, amount_dedut):
+    bal = 0
+    if ty_pe == 1:
+        user.balance -= amount_dedut
+        user.save()
+        bal = user.balance
+    elif ty_pe == 2:
+        user.referral_bonus -= amount_dedut
+        user.save()
+        bal = user.referral_bonus
+    else:
+        bal = 0
+    return int(bal)

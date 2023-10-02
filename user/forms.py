@@ -6,12 +6,7 @@ from accesscontrol.models import Account, Kyc
 class DepositForm(forms.ModelForm):
     class Meta:
         model = Transactions
-        fields = [
-            "amount",
-            "method",
-            "prove_img",
-            "trans_type",
-        ]
+        fields = ["amount", "method", "prove_img", "trans_type", "amount_in_coin"]
 
 
 class KycForm(forms.ModelForm):

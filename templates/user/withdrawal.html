@@ -114,6 +114,20 @@
                     </div>
                   </div>
                   <div class="form-group">
+                    <label for="selctbal">Choose wallet to Withdraw from</label>
+                    <select name="balType" class="form-control" id="bal">
+                      <option value="0">----Select balance-----</option>
+
+                      <option value="1">
+                        Interest balance ${{user.balance}}
+                      </option>
+
+                      <option value="2">
+                        Referal Bonus ${{user.referral_bonus}}
+                      </option>
+                    </select>
+                  </div>
+                  <div class="form-group">
                     <label class="form-label">Amount</label>
                     <div class="input-group">
                       <input
@@ -195,8 +209,10 @@
         .then((data) => {
           console.log(data);
           const tocurrencyAmount = data[tocurrency];
-          var toamount = (amount * tocurrencyAmount).toLocaleString("en");
-          document.getElementById("coinvalue").innerText = `${toamount}`;
+          var toamount = amount * tocurrencyAmount;
+          document.getElementById(
+            "coinvalue"
+          ).innerText = `${toamount.toLocaleString("en")}`;
           document.getElementById("amount_in_coin").value = `${toamount}`;
           submit_btn.removeAttribute("disabled");
         })

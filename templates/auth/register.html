@@ -1309,6 +1309,8 @@
               <div class="form-group">{{ form.password2|as_crispy_field }}</div>
             </div>
 
+            <input type="hidden" name="reference" value="{{reference}}" />
+
             <!-- <div class="col-12">
               <div class="form-group">
                 {{ form.captcha }} {% for error in form.captcha.errors %}

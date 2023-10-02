@@ -13,7 +13,15 @@ from .forms import DepositForm, KycForm, UpdateUserForm
 
 @login_required()
 def index(request):
-    return render(request, "user/index.html")
+    user = request.user
+    context = {}
+
+    context["tot_amount_invested"] = utils.get_total_investment_by_user(
+        Investments, user
+    )
+    context["total_deposit"] = utils.get_total_adeposit_by_user(Transactions, user)
+
+    return render(request, "user/index.html", context)
 
 
 @login_required()
@@ -101,10 +109,11 @@ def withdrawal(request):
         amount = int(request.POST.get("amount"))
         amount_in_coin = request.POST.get("amount_in_coin")
         mode = request.POST.get("mode")
+        bal_type = int(request.POST.get("balType"))
         addr = utils.check_user_address(user)
-        print(addr)
+        balance = utils.get_user_balance(user, bal_type)
         if addr:
-            if user.balance >= amount:
+            if balance >= amount:
                 transaction = Transactions(
                     user=user,
                     amount=amount,
@@ -112,7 +121,7 @@ def withdrawal(request):
                     method=mode,
                     trans_type=utils.W,
                 )
-                user.balance -= amount
+                utils.deduct_user_balance(user, bal_type, amount)
                 user.save()
                 transaction.save()
 
@@ -161,9 +170,12 @@ def referrals(request):
 def profile(request):
     user = request.user
     if request.POST:
-        form = UpdateUserForm(request.POST, request.FILES, instance=user)
+        form = UpdateUserForm(request.POST, instance=user)
         if form.is_valid():
+            user.is_updated = True
+
             form.save()
+            user.save()
             messages.error(request, "Account updated")
             return redirect("profile")
         else:

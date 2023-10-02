@@ -17,13 +17,16 @@ import pyotp
 
 
 def register(request):
+    ref = request.GET.get("reference")
+    print(ref)
     if request.POST:
         form = RegisterForm(request.POST)
         if form.is_valid():
             #  use cache to store the cleaned_data  till their email address has been verify and the code should last for  5min
-
+            reference = request.POST.get("reference")
             user_details = form.cleaned_data
             user_details["code"] = utils.gen_random_code(6)
+            user_details["reference"] = reference
             print(user_details)
             data = cache.get(user_details["email"])
             if data:
@@ -53,7 +56,7 @@ def register(request):
 
     else:
         form = RegisterForm()
-    return render(request, "auth/register.html", {"form": form})
+    return render(request, "auth/register.html", {"form": form, "reference": ref})
 
 
 def confirm_email(request, email):
@@ -89,6 +92,11 @@ def confirm_email(request, email):
             account.set_password(user_data["password1"])
             account.save()
 
+            referee = utils.check_user_username(user_data["reference"], Account)
+            if referee:
+                referee.referral_bonus += 100
+                referee.save()
+
             messages.info(request, "Account created you can now login")
             return redirect("login")
         else:
@@ -119,6 +127,9 @@ def log_in(request):
                     email_encode = urlsafe_base64_encode(force_bytes(cache_key))
                     return redirect(f"/authorization?uuid={email_encode}")
                 login(request, user)
+                if not user.is_updated:
+                    messages.info(request, "Update your acount")
+                    return redirect("profile")
                 if destination:
                     return redirect(f"{destination}")
                 else:

@@ -2,7 +2,29 @@
 <!--  -->
 {% load humanize %}
 <!--  -->
-{% block title %} Investment {% endblock title %}
+{% block title %} Investment {% endblock title %} {% block style %}
+<style>
+  .mbd {
+    display: none;
+  }
+  .mdl {
+    display: block;
+  }
+  @media (max-width: 767px) {
+    .mbd {
+      display: block;
+    }
+    .mdl {
+      display: none;
+    }
+
+    a.text-sm-10 {
+      font-size: 10px !important;
+      padding: 17px !important;
+    }
+  }
+</style>
+{% endblock style %}
 <!--  -->
 {% block content %}
 <div class="page-wrapper">
@@ -38,10 +60,12 @@
                   </div>
                 </div>
                 <div class="d-flex justify-content-between mt-3 mt-sm-4 gap-2">
-                  <a href="/plans" class="btn btn--sm btn--base"
+                  <a href="/plans" class="btn btn--sm btn--base text-sm-10"
                     >Invest Now <i class="las la-arrow-right fs--12px ms-1"></i
                   ></a>
-                  <a href="/withdraw-funds" class="btn btn--sm btn--base"
+                  <a
+                    href="/withdraw-funds"
+                    class="btn btn--sm btn--base text-sm-10"
                     >Withdraw Now
                     <i class="las la-arrow-right fs--12px ms-1"></i
                   ></a>
@@ -79,7 +103,43 @@
             </div>
           </div>
           <div class="col-md-12">
-            <div class="table-responsive">
+            <div class="table-responsive mbd">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Plan</th>
+                    <th>Amount Invested</th>
+
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% if investments %} {% for obj in investments %}
+                  <tr>
+                    <td>{{obj.package.name}}</td>
+                    <td>${{obj.amount_invested|intcomma}}</td>
+
+                    <td class="mbd">
+                      <a
+                        href="javascript:void(0)"
+                        data-bs-toggle="modal"
+                        data-bs-target="#investModal"
+                        data-investment='{"package":"{{obj.package.name}}","id":{{obj.id}},"amount_invested":"{{obj.amount_invested}}","profit":"{{obj.amount_earn}}", "start_date":"{{obj.date|date:"M. d, Y"}}","end_date":"{{obj.end_date|date:"M. d, Y"}}","status":"{{obj.status}}"}'
+                        class="btn--base btn-sm investModal"
+                        >Details</a
+                      >
+                    </td>
+                  </tr>
+                  {% endfor %} {% else %}
+
+                  <tr>
+                    <td colspan="100%" class="text-center">Data not found</td>
+                  </tr>
+                  {% endif %}
+                </tbody>
+              </table>
+            </div>
+            <div class="table-responsive mdl">
               <table class="table">
                 <thead>
                   <tr>
@@ -124,9 +184,112 @@
       </div>
     </section>
   </div>
+
+  <div class="modal fade" id="investModal">
+    <div class="modal-dialog modal-dialog-centered modal-content-bg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <strong class="modal-title text-white" id="ModalLabel">
+            Investments detail <span class="planName"></span>
+          </strong>
+          <button type="button" class="close" data-bs-dismiss="modal">
+            <i class="las la-times"></i>
+          </button>
+        </div>
+        <!--  -->
+        <div class="card" style="overflow: hidden">
+          <table class="table">
+            <tbody>
+              <tr>
+                <td>package</td>
+                <td class="text-center">
+                  <span id="t_package"></span>
+                </td>
+              </tr>
+
+              <tr>
+                <td>Amount Investment</td>
+                <td class="text-center text-warning">
+                  $<span id="t_amount_invested"></span>
+                </td>
+              </tr>
+
+              <tr>
+                <td>Profit</td>
+                <td class="text-center text-success">
+                  $<span id="t_profit"></span>
+                </td>
+              </tr>
+
+              <tr>
+                <td>Start Date</td>
+                <td class="text-center">
+                  <span id="t_Sdate"></span>
+                </td>
+              </tr>
+              <tr>
+                <td>End Date</td>
+                <td class="text-center">
+                  <span id="t_edate"></span>
+                </td>
+              </tr>
+
+              <tr>
+                <td>Status</td>
+                <td class="text-center" id="td_status"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-success btn-md"
+            data-bs-dismiss="modal"
+          >
+            ok
+          </button>
+        </div>
+        <!--  -->
+      </div>
+    </div>
+  </div>
   <!-- footer-section start  -->
   {% include "components/auth_footer.html" %}
   <!-- footer-section end  -->
 </div>
 
-{% endblock content %}
+{% endblock content %} {% block script %}
+
+<script>
+  (function ($) {
+    "use strict";
+    $(".investModal").click(function () {
+      var symbol = "$";
+      var currency = "USD";
+
+      var modal = $("#investModal");
+      var investment = $(this).data("investment");
+      var td_status = $("#td_status");
+      let text_color;
+      if (investment.status == "active") {
+        text_color = "bg-info";
+      } else if (investment.status == "completed") {
+        text_color = "bg-success";
+      } else {
+        text_color = "bg-bg-warning";
+      }
+
+      document.getElementById("t_package").innerText = investment.package;
+      document.getElementById("t_amount_invested").innerText =
+        investment.amount_invested;
+      document.getElementById("t_profit").innerText = investment.profit;
+      document.getElementById("t_Sdate").innerText = investment.start_date;
+      document.getElementById("t_edate").innerText = investment.end_date;
+      document.getElementById(
+        "td_status"
+      ).innerHTML = `<span class="badge ${text_color}" id="t_status">${investment.status}</span>`;
+    });
+  })(jQuery);
+</script>
+{% endblock script %}
