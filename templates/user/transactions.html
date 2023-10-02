@@ -1,6 +1,25 @@
 {% extends "layouts/auth.html" %} {% load crispy_forms_tags %}
 <!--  -->
-{% block title %} Transactions {% endblock title %}
+{% load humanize %}
+<!--  -->
+{% block title %} Transactions {% endblock title %} {% block style %}
+<style>
+  .mbd {
+    display: none;
+  }
+  .mdl {
+    display: block;
+  }
+  @media (max-width: 767px) {
+    .mbd {
+      display: block;
+    }
+    .mdl {
+      display: none;
+    }
+  }
+</style>
+{% endblock style %}
 <!--  -->
 {% block content %}
 <div class="page-wrapper">
@@ -18,7 +37,46 @@
           <div class="col-md-12">
             <div class="card custom--card">
               <div class="card-body p-0">
-                <div class="table-responsive--md">
+                <div class="table-responsive mbd">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Ref</th>
+
+                        <th>Amount</th>
+
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for obj in transactions %}
+                      <tr>
+                        <td>
+                          <strong>{{obj.unique_u}}</strong>
+                        </td>
+
+                        <td class="budget">
+                          <span class="fw-bold text--success">
+                            ${{obj.amount|intcomma}}
+                          </span>
+                        </td>
+
+                        <td class="mbd">
+                          <a
+                            href="javascript:void(0)"
+                            data-bs-toggle="modal"
+                            data-bs-target="#transactModal"
+                            data-transaction='{"user":"{{obj.user.get_fullname}}","id":{{obj.id}},"ref":"{{obj.unique_u}}","type":"{{obj.trans_type}}","amount":"{{obj.amount}}", "method":"{{obj.method}}","date":"{{obj.date|date:"Y-M-D g:iA"}}","status":"{{obj.status}}"}'
+                            class="btn--base btn-md mt-4 transactModal"
+                            >Details</a
+                          >
+                        </td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+                <div class="table-responsive mdl">
                   <table class="table">
                     <thead>
                       <tr>
@@ -41,7 +99,7 @@
 
                         <td class="budget">
                           <span class="fw-bold text--success">
-                            {{obj.amount}} USD
+                            ${{obj.amount|intcomma}}
                           </span>
                         </td>
 
@@ -74,9 +132,103 @@
     </div>
   </div>
 
+  <div class="modal fade" id="transactModal">
+    <div class="modal-dialog modal-dialog-centered modal-content-bg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <strong class="modal-title text-white" id="ModalLabel">
+            Transaction detail <span class="planName"></span>
+          </strong>
+          <button type="button" class="close" data-bs-dismiss="modal">
+            <i class="las la-times"></i>
+          </button>
+        </div>
+        <!--  -->
+        <div class="card" style="overflow: hidden">
+          <table class="table">
+            <tbody>
+              <tr>
+                <td>Ref</td>
+                <td class="text-center">
+                  <span id="t_user"></span>
+                </td>
+              </tr>
+
+              <tr>
+                <td>Amount</td>
+                <td class="text-center text-danger">
+                  $<span id="t_amount"></span>
+                </td>
+              </tr>
+
+              <tr>
+                <td>Method</td>
+                <td class="text-center text-warning">
+                  <span id="t_method"></span>
+                </td>
+              </tr>
+
+              <tr>
+                <td>Date</td>
+                <td class="text-center">
+                  <span id="t_date"></span>
+                </td>
+              </tr>
+
+              <tr>
+                <td>Status</td>
+                <td class="text-center" id="td_status"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-success btn-md"
+            data-bs-dismiss="modal"
+          >
+            close
+          </button>
+        </div>
+        <!--  -->
+      </div>
+    </div>
+  </div>
   <!-- footer-section start  -->
   {% include "components/auth_footer.html" %}
   <!-- footer-section end  -->
 </div>
 
-{% endblock content %}
+{% endblock content %} {% block script %}
+
+<script>
+  (function ($) {
+    "use strict";
+    $(".transactModal").click(function () {
+      var symbol = "$";
+      var currency = "USD";
+
+      var modal = $("#transactModal");
+      var plan = $(this).data("transaction");
+      var td_status = $("#td_status");
+      let text_color;
+      if (plan.status == "pending") {
+        text_color = "bg-warning";
+      } else if (plan.status == "declined") {
+        text_color = "bg-warning";
+      } else {
+        text_color = "bg-success";
+      }
+
+      document.getElementById("t_user").innerText = plan.ref;
+      document.getElementById("t_amount").innerText = plan.amount;
+      document.getElementById("t_method").innerText = plan.method;
+      document.getElementById("t_date").innerText = plan.date;
+      document.getElementById(
+        "td_status"
+      ).innerHTML = `<span class="badge ${text_color}" id="t_status">${plan.status}</span>`;
+    });
+  })(jQuery);
+</script>
+{% endblock script %}

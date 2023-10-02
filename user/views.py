@@ -177,8 +177,17 @@ def invest_static(request):
     user = request.user
     investments = Investments.objects.filter(user=user).order_by("-date")
     tot_amount_invested = utils.get_total_investment_by_user(Investments, user)
-    print(tot_amount_invested)
-    context = {"tot_amount_invested": tot_amount_invested, "investments": investments}
+
+    context = {
+        "tot_amount_invested": tot_amount_invested,
+        "investments": investments,
+        "total_active_in": Investments.objects.filter(
+            user=user, status="active"
+        ).count(),
+        "total_completed_in": Investments.objects.filter(
+            user=user, status="completed"
+        ).count(),
+    }
     return render(request, "user/invest_static.html", context)
 
 
