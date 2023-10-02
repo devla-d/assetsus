@@ -18,7 +18,7 @@ import pyotp
 
 def register(request):
     ref = request.GET.get("reference")
-    print(ref)
+
     if request.POST:
         form = RegisterForm(request.POST)
         if form.is_valid():
@@ -128,7 +128,9 @@ def log_in(request):
                     return redirect(f"/authorization?uuid={email_encode}")
                 login(request, user)
                 if not user.is_updated:
-                    messages.info(request, "Update your acount")
+                    messages.info(
+                        request, "Update your acount detail before procceding"
+                    )
                     return redirect("profile")
                 if destination:
                     return redirect(f"{destination}")
