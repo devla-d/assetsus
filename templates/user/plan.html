@@ -29,13 +29,21 @@
               data-background="/assets/auth/templates/bit_gold//images/bg/bg-4.png"
             >
               <h4 class="package-card__title base--color mb-2">{{obj.name}}</h4>
-
+              {% if obj.name == "Cannabis" %}
+              <ul class="package-card__features mt-4">
+                <li>Return 92.60%</li>
+                <li>Every week(s)</li>
+                <li>Duration : 6 Weeks</li>
+                <li>Total {{obj.get_tot_roi}}%</li>
+              </ul>
+              {% else %}
               <ul class="package-card__features mt-4">
                 <li>Return {{obj.roi}}%</li>
                 <li>Every day(s)</li>
                 <li>Duration : {{obj.duration}}days</li>
                 <li>Total {{obj.get_tot_roi}}%</li>
               </ul>
+              {% endif %}
               <div class="package-card__range mt-5 base--color">
                 ${{ obj.min_amount|intcomma }} - ${{obj.max_amount|intcomma}}
               </div>
