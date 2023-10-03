@@ -109,7 +109,7 @@ class RegisterForm(UserCreationForm):
         ),
     )
 
-    # captcha = ReCaptchaField()
+    captcha = ReCaptchaField()
 
     class Meta:
         model = User
@@ -121,7 +121,7 @@ class RegisterForm(UserCreationForm):
             "phone",
             "password1",
             "password2",
-            # "captcha",
+            "captcha",
         ]
 
     def save(self, commit=True):
@@ -156,15 +156,11 @@ class LoginForm(forms.ModelForm):
         ),
     )
 
-    # captcha = ReCaptchaField()
+    captcha = ReCaptchaField()
 
     class Meta:
         model = User
-        fields = (
-            "email",
-            "password",
-            # "captcha"
-        )
+        fields = ("email", "password", "captcha")
 
     def clean(self):
         if self.is_valid():
