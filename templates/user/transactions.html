@@ -51,7 +51,7 @@
                       </tr>
                     </thead>
                     <tbody>
-                      {% for obj in transactions %}
+                      {% if transactions %} {% for obj in transactions %}
                       <tr>
                         <td>
                           <strong>{{obj.unique_u}}</strong>
@@ -74,7 +74,14 @@
                           >
                         </td>
                       </tr>
-                      {% endfor %}
+                      {% endfor %} {% else %}
+
+                      <tr>
+                        <td colspan="100%" class="text-center">
+                          Data not found
+                        </td>
+                      </tr>
+                      {% endif %}
                     </tbody>
                   </table>
                 </div>
@@ -112,7 +119,10 @@
                           </span>
                         </td>
 
-                        <td class="budget">{{obj.method}}</td>
+                        <td class="budget">
+                          {% if obj.method %} {{obj.method}} {% else %} by admin
+                          {% endif %}
+                        </td>
 
                         <td>
                           <span class="badge bg--info">{{obj.date}}</span>
@@ -255,11 +265,16 @@
       document.getElementById(
         "t_amountc"
       ).innerHTML = `<code>${plan.amountc}</code>${plan.method}`;
-      document.getElementById("t_method").innerText = plan.method;
+
       document.getElementById("t_date").innerText = plan.date;
       document.getElementById(
         "td_status"
       ).innerHTML = `<span class="badge ${text_color}" id="t_status">${plan.status}</span>`;
+      if (plan.method) {
+        document.getElementById("t_method").innerText = plan.method;
+      } else {
+        document.getElementById("t_method").innerText = "by admin";
+      }
     });
   })(jQuery);
 </script>

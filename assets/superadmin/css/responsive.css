@@ -1,0 +1,52 @@
+ @media (max-width: 768px) {
+     .topbar .navbar-search {
+         width: 100%;
+     }
+     .sidebar {
+         width: 0!important;
+         overflow: hidden;
+         transition: all .3s ease;
+         -webkit-transition: all .3s ease;
+     }
+     .sidebar.toggled {
+         width: 100vw!important;
+         transition: all .3s ease-in-out;
+         -webkit-transition: all .3s ease-in-out;
+     }
+     .sidebar.toggled .sidebar-brand .sidebar-brand-text {
+         display: inline;
+     }
+     .sidebar.toggled .nav-item .nav-link {
+         display: block;
+         width: 100%;
+         text-align: left;
+         padding: 1rem;
+         width: 14rem;
+     }
+     .sidebar.toggled .nav-item .nav-link span {
+         font-size: .85rem;
+         display: inline;
+     }
+     .sidebar.toggled .nav-item .nav-link i {
+         font-size: .85rem;
+         margin-top: 0.4rem;
+         margin-right: 0.5rem;
+     }
+     .editor-header h3 {
+         font-size: 20px;
+     }
+     #hiddensm {
+         display: none;
+     }
+     #hiddenxl {
+         display: block !important; 
+     }
+     .user__avatar{
+         margin-top: 13px;
+     }
+
+
+     .card-body.md{
+         padding: 10px !important;
+     }
+ }

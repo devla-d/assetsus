@@ -117,7 +117,22 @@
                   {% if investments %} {% for obj in investments %}
                   <tr>
                     <td>{{obj.package.name}}</td>
-                    <td>${{obj.amount_invested|intcomma}}</td>
+                    <td>
+                      {% if obj.status == "active" %}
+                      <span class="badge bg-primary">
+                        ${{obj.amount_invested|intcomma}}</span
+                      >
+                      {% elif obj.status == "inactive" %}
+                      <span class="badge bg-danger">
+                        ${{obj.amount_invested|intcomma}}</span
+                      >
+                      {% else %}
+
+                      <span class="badge bg-success">
+                        ${{obj.amount_invested|intcomma}}</span
+                      >
+                      {% endif %}
+                    </td>
 
                     <td class="mbd">
                       <a

@@ -1,0 +1,184 @@
+{% extends "layouts/superadmin.html" %} {% load crispy_forms_tags %}
+<!---->
+{% block stylesheet %} {% endblock stylesheet %} {% block content %}
+
+<!-- Container Fluid-->
+<div class="container-fluid" id="container-wrapper">
+  <div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Investment Detail</h1>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="/">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Detail</li>
+    </ol>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="col-lg-10 mb-4">
+      <!-- Users -->
+      <div class="card">
+        <div
+          class="card-header py-3 d-flex flex-row align-items-center justify-content-between"
+        >
+          <h6 class="m-0 font-weight-bold text-primary"></h6>
+        </div>
+        <div class="table-responsive table-upgrade">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Investment</th>
+                <th class="text-center">Details</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+            <tbody>
+              <tr>
+                <th>User</th>
+                <td class="text-center text-success">
+                  {{investment.user.get_fullname}}
+                </td>
+              </tr>
+              <tr class="border-0">
+                <th>Package</th>
+                <td class="text-center text-success">
+                  {{investment.package.name}}
+                </td>
+              </tr>
+              <tr>
+                <th>Date</th>
+                <td class="text-center text-success">
+                  {{investment.date|date:"Y-M-d g:iA"}}
+                </td>
+              </tr>
+
+              <tr class="border-0">
+                <th>End Date</th>
+                <td class="text-center text-success">
+                  {{investment.end_date|date:"Y-M-d g:iA"}}
+                </td>
+              </tr>
+              <tr class="border-0">
+                <th>Amount</th>
+                <td class="text-center text-success">
+                  ${{investment.amount_invested}}
+                </td>
+              </tr>
+              <tr class="border-0">
+                <th>Profit</th>
+                <td class="text-center text-success">
+                  ${{investment.amount_earn}}
+                </td>
+              </tr>
+
+              <tr class="border-0">
+                <th>Status</th>
+                {% if investment.status == "inactive" %}
+                <td class="text-center text-warning">
+                  {{ investment.status }}
+                </td>
+                {% elif investment.status == "completed" %}
+                <td class="text-center text-success">
+                  {{ investment.status }}
+                </td>
+                {% elif investment.status == "active" %}
+                <td class="text-center text-primary">
+                  {{ investment.status }}
+                </td>
+                {% else %}
+                <td class="text-center text-danger">{{ investment.status }}</td>
+                {% endif %}
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        {% if investment.status == "active" %}
+        <div class="card-footer mb-4">
+          <div class="d-flex space-bt">
+            <button
+              type="button"
+              data-toggle="modal"
+              data-target="#topupModal"
+              class="btn btn-success"
+            >
+              <i class="fas fa-donate"></i> Top Up
+            </button>
+
+            <form
+              action="{% url 'investments_detail' pk=investment.id %}"
+              method="post"
+            >
+              {% csrf_token %}
+              <input type="hidden" name="nm" value="koi" />
+              <button type="submit" class="btn btn-danger">
+                <i class="fas fa-credit-card"></i> End Investment
+              </button>
+            </form>
+          </div>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  <!--Row-->
+</div>
+<!---Container Fluid-->
+
+<!-- topup  -->
+<div
+  class="modal fade"
+  id="topupModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabelLogout"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabelLogout">Topup Balance</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form method="post" action="{% url 'investments_topup' %}">
+        {% csrf_token %}
+        <div class="modal-body">
+          <input type="hidden" name="invest_id" value="{{investment.id}}" />
+
+          <div class="form-group">
+            <label for="amount">Amount</label>
+            <input
+              type="number"
+              name="amount"
+              class="form-control"
+              value=""
+              required
+            />
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-outline-primary"
+            data-dismiss="modal"
+          >
+            Cancel
+          </button>
+          <input
+            class="btn btn-success"
+            type="submit"
+            name="submit"
+            value="Top up"
+          />
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock content %} {% block script %} {% endblock script %}

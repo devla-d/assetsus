@@ -1,0 +1,147 @@
+{% extends "layouts/superadmin.html" %}{% load crispy_forms_tags %}
+<!---->
+{% block title %} Withdrawals {% endblock title %}
+<!---->
+{% block style %}
+<style>
+  ul {
+    padding: 0;
+  }
+
+  ul.user_balance_details li {
+    display: inline-block;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid #f1f4f8;
+    text-align: center;
+    margin-left: 6px;
+  }
+</style>
+{% endblock style %} {% block content %}
+<!--[container-fluid]-->
+<div class="container-fluid" id="container-wrapper">
+  <div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Withdrawal</h1>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="/">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Withdrawal</li>
+    </ol>
+  </div>
+  <div class="row" id="hiddensm">
+    <div class="col-lg-12">
+      <div class="card mb-4">
+        <div
+          class="card-header py-3 d-flex flex-row align-items-center justify-content-between"
+        >
+          <h6 class="m-0 font-weight-bold text-primary">DataTables</h6>
+        </div>
+        <div class="table-responsive p-3">
+          <table class="table align-items-center table-flush" id="dataTable">
+            <thead class="thead-light">
+              <tr>
+                <th>User</th>
+                <th>Date</th>
+                <th>Amount</th>
+
+                <th>Action</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              {% for obj in transactions %}
+              <tr>
+                <td>
+                  <a href="#">{{obj.user.username}}</a>
+                </td>
+                <td>{{obj.date|date:"Y-M-D g:IA"}}</td>
+                <td>
+                  {% if obj.status == 'pending' %}
+                  <span class="badge badge-warning">${{obj.amount}}</span>
+                  <!---->
+                  {% elif obj.status == 'approved' %}
+                  <span class="badge badge-success">${{obj.amount}}</span>
+                  <!---->
+                  {% else %}
+                  <span class="badge badge-danger">${{obj.amount}}</span>
+                  <!---->{% endif %}
+                </td>
+                <td>
+                  <a href="{% url 'withdrawal_detail' pk=obj.id %}">Details</a>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row" id="hiddenxl">
+    {% for obj in transactions %}
+    <div class="col-xl-3 col-md-6 mb-4">
+      <a href="{% url 'withdrawal_detail' pk=obj.id %}" class="card h-100">
+        <div class="card-body">
+          <div class="row align-items-center">
+            <div class="col mr-2">
+              <div class="h5 mb-0 font-weight-bold text-gray-800">
+                {{obj.user.username}}
+              </div>
+              <div class="mt-2 mb-0 text-muted text-xs">
+                {% if obj.status == 'pending' %}
+                <span class="text-warning mr-2"
+                  ><i class="fa"></i>${{obj.amount}}</span
+                >
+                {% elif obj.status == 'approved' %}
+                <span class="text-success mr-2"
+                  ><i class="fa"></i>${{obj.amount}}</span
+                >
+                {% else %}
+                <span class="text-danger mr-2"
+                  ><i class="fa"></i>${{obj.amount}}</span
+                >
+                {% endif %}
+                <span> {{obj.date|date:"Y-M-D g:iA"}}</span>
+              </div>
+            </div>
+            <div class="col-auto">
+              <img
+                class="img-profile rounded-circle"
+                src="{{obj.user.image_url}}"
+                style="max-width: 42px"
+              />
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+<!--[container-fluid ends]-->
+
+<!-- Footer -->
+<footer class="sticky-footer bg-white">
+  <div class="container my-auto">
+    <div class="copyright text-center my-auto">
+      <span
+        >copyright &copy;
+        <script>
+          document.write(new Date().getFullYear());
+        </script>
+        - developed by
+        <b><a href="#" target="_blank">Sammy</a></b>
+      </span>
+    </div>
+  </div>
+</footer>
+<!-- Footer -->
+
+{% endblock content %} {% block script %}
+
+<script>
+  $(document).ready(function () {
+    $("#dataTable").DataTable(); // ID From dataTable
+    $("#dataTableHover").DataTable(); // ID From dataTable with Hover
+  });
+</script>
+{% endblock script %}

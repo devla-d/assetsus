@@ -49,9 +49,7 @@ class Account(AbstractUser):
         if self.profile_image:
             return f"http://localhost:8000/{self.profile_image.url}"
         else:
-            return (
-                f"https://ui-avatars.com/api/?name={self.first_name} {self.last_name}"
-            )
+            return f"https://ui-avatars.com/api/?name={self.get_fullname()}"
 
     def get_fullname(self):
         return f"{self.first_name} {self.last_name}"
