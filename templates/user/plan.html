@@ -47,6 +47,7 @@
               <div class="package-card__range mt-5 base--color">
                 ${{ obj.min_amount|intcomma }} - ${{obj.max_amount|intcomma}}
               </div>
+              {% if user.is_authenticated %}
               <a
                 href="javascript:void(0)"
                 data-bs-toggle="modal"
@@ -55,6 +56,12 @@
                 class="btn--base btn-md mt-4 investModal"
                 >Invest Now</a
               >
+              {% else %}
+              <a href="/login" class="btn--base btn-md mt-4 investModal"
+                >Invest now
+              </a>
+
+              {% endif %}
             </div>
             <!-- package-card end -->
           </div>
