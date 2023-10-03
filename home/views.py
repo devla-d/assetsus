@@ -131,3 +131,7 @@ def esg(request):
 
 def infrastructure(request):
     return render(request, "home/infrastructure.html")
+
+
+def philosophy(request):
+    return render(request, "home/philosophy.html")

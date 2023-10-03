@@ -24,7 +24,7 @@ def index(request):
     return render(request, "user/index.html", context)
 
 
-@login_required()
+# @login_required()
 def plan(request):
     packages = Packages.objects.all()
     return render(request, "user/plan.html", {"packages": packages})

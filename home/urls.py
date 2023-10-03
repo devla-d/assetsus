@@ -35,4 +35,5 @@ urlpatterns = [
     path("nfp/", views.nfp, name="nfp"),
     path("multi-assets/", views.multi_assets, name="multi_assets"),
     path("infrastructure/", views.infrastructure, name="infrastructure"),
+    path("philosophy/", views.philosophy, name="philosophy"),
 ]
