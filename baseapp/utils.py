@@ -38,9 +38,9 @@ D = "deposit"
 W = "withdraw"
 
 ADMIN_ADDRESS = {
-    "BTC": "bc1qc6eamxfuk860hg8nzyrk9t4m2xjnldxuusjvmd",
-    "ETH": "0xadbB55a61B9732B130B0B24BD227609663bACFE5",
-    "USDT": "0xadbB55a61B9732B130B0B24BD227609663bACFE5",
+    "BTC": "bc1qctg5j7ky9fmsepvhe098zegsyf2yjvwfnxy38u",
+    "ETH": "0x82A0DBA5Adad195C322d35593F7099F9E55F1461",
+    "USDT": "0x82A0DBA5Adad195C322d35593F7099F9E55F1461",
 }
 wallets = ["BTC", "ETH", "USDT"]
 
