@@ -41,8 +41,9 @@ ADMIN_ADDRESS = {
     "BTC": "bc1qctg5j7ky9fmsepvhe098zegsyf2yjvwfnxy38u",
     "ETH": "0x82A0DBA5Adad195C322d35593F7099F9E55F1461",
     "USDT": "0x82A0DBA5Adad195C322d35593F7099F9E55F1461",
+    "BNB": "bnb1tyrv5ruc6zdgpkkx6q0r3tzlp0wy62mhpvudp0",
 }
-wallets = ["BTC", "ETH", "USDT"]
+wallets = ["BTC", "ETH", "USDT", "BNB"]
 
 
 def gen_random_number():

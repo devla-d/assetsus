@@ -65,7 +65,7 @@ def confirm_deposit(request, amount, mode):
 
     else:
         messages.error(request, "Invalid Link")
-        return redirect("deposit_page")
+        return redirect("deposit")
 
 
 @login_required()
